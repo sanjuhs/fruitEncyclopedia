@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lvl1_gridScreenLanding.dart';
 import 'package:provider/provider.dart';
+import 'package:myapp8_fruit_encyclopedia/screens/lvl2_fruitDetailScreen.dart';
 void main() {
   runApp(MyApp());
 }
