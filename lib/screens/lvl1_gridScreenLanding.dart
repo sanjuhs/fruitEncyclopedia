@@ -26,7 +26,8 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding> {
           ), 
         itemBuilder: (context , i )=>Container(
           child: Text(fruitsdisplaydata[i].title), 
-          decoration: BoxDecoration(color:fruitsdisplaydata[i].color1 ),),
+          decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
+          //need to add widget above
         itemCount: fruitsdisplaydata.length,
         padding: const EdgeInsets.all(10),
       )
