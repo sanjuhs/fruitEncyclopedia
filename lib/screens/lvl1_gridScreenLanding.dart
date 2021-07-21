@@ -24,7 +24,9 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           ), 
-        itemBuilder: (context , i )=>Container(child: Text(fruitsdisplaydata[i].title), decoration: BoxDecoration(color:fruitsdisplaydata[i].color1 ),),
+        itemBuilder: (context , i )=>Container(
+          child: Text(fruitsdisplaydata[i].title), 
+          decoration: BoxDecoration(color:fruitsdisplaydata[i].color1 ),),
         itemCount: fruitsdisplaydata.length,
         padding: const EdgeInsets.all(10),
       )
