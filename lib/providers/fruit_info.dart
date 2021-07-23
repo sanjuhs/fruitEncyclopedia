@@ -9,6 +9,8 @@ class FruitsInfo with ChangeNotifier{
       description:'This is an apple description of the century ',
       color1:Colors.redAccent,
       color2:Colors.amber,
+      tags: [],
+      imgUrl: 'images/1_2_greenapple.png',
     ),
     Fruit(
       id:'p2',
@@ -16,6 +18,8 @@ class FruitsInfo with ChangeNotifier{
       description:'This is an apple description of the century ',
       color1:Colors.redAccent,
       color2:Colors.amber,
+      tags: [],
+      imgUrl: 'images/1_2_greenapple.png',
     ),
     Fruit(
       id:'p3',
@@ -23,6 +27,8 @@ class FruitsInfo with ChangeNotifier{
       description:'This is an apple description of the century ',
       color1:Colors.redAccent,
       color2:Colors.amber,
+      tags: [],
+      imgUrl: 'images/1_2_greenapple.png',
     ),
     Fruit(
       id:'p4',
@@ -30,6 +36,8 @@ class FruitsInfo with ChangeNotifier{
       description:'This is an apple description of the century ',
       color1:Colors.redAccent,
       color2:Colors.amber,
+      tags: [],
+      imgUrl: 'images/1_2_greenapple.png',
     ),
   ];
 
