@@ -7,6 +7,8 @@ class Fruit {
   final String description;
   final Color color1;
   final Color color2;
+  final String imgUrl;
+  final List<int> tags;
   //bool isFavorite;
 
   Fruit(
@@ -16,6 +18,8 @@ class Fruit {
       @required this.description,
       @required this.color1,
       @required this.color2,
+      this.tags,
+      @required this.imgUrl
       //this.isFavorite= false
       });
 }
