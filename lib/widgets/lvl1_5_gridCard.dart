@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:myapp8_fruit_encyclopedia/screens/lvl2_fruitDetailScreen.dart';
 class GridCard extends StatefulWidget {
   //const GridCard({ Key? key }) : super(key: key);
 
@@ -32,7 +32,10 @@ class _GridCardState extends State<GridCard> {
             Text(widget.titlee),
           ],
         ),
-        onTap: (){},
+        onTap: (){
+          //Navigator.of(context).push( (context) => lvl2_fruitData)
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Lv2FruitDetails( widget.index )));
+        },
       )
       
       // TextButton(
