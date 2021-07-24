@@ -6,7 +6,16 @@ class FruitsInfo with ChangeNotifier{
     Fruit(
       id:'p1',
       title:'Apple',
-      description:'This is an apple description of the century ',
+      description:'''This is an apple description of the century This is an apple description of the century 
+       This is an apple description of the century This is an apple description of the century This is an apple description of the
+        century This is an apple description of the century This is an apple description of the century This is an apple description 
+        of the century This is an apple description of the century This is an apple description of the century 
+       This is an apple description of the century This is an apple description of the century This is an apple description of the
+        century This is an apple description of the century This is an apple description of the century This is an apple description 
+        of the centuryThis is an apple description of the century This is an apple description of the century 
+       This is an apple description of the century This is an apple description of the century This is an apple description of the
+        century This is an apple description of the century This is an apple description of the century This is an apple description 
+        of the century''',
       color1:Colors.redAccent,
       color2:Colors.amber,
       tags: [],
