@@ -47,6 +47,8 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                 CurvedShape(
                     ht: curveHeight, imgUrl: fruitsdisplaydata[id].imgUrl),
                 Container(
+                  //transform here is to move the title upwards
+                  transform: Matrix4.translationValues(0.0, -20.0, 0.0),
                   child: Text(
                     fruitsdisplaydata[id].title,
                     textDirection: TextDirection.ltr,
