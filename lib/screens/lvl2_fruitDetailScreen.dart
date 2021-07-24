@@ -1,3 +1,10 @@
+
+// Lv2FruitDetails( int i ){
+
+//   // put your state less or staeful widget here
+//   // also use provider 
+// }
+
 import "package:flutter/material.dart";
 
 import 'package:provider/provider.dart';
@@ -7,11 +14,13 @@ import 'package:myapp8_fruit_encyclopedia/models/fruit.dart';
 import 'dart:math';
 
 class Lv2FruitDetails extends StatefulWidget {
-  
+  final int a ;  
+  Lv2FruitDetails(this.a);
 
   @override
   State<StatefulWidget> createState() {
-    return _Lv2FruitDetails();
+    return _Lv2FruitDetails(id: a);
+
   }
 }
 
@@ -34,7 +43,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
         backgroundColor: fruitsdisplaydata[id].color1,
         body: ListView(
           children: <Widget>[
-            CurvedShape(ht: curveHeight),
+            CurvedShape(ht: curveHeight , imgUrl:fruitsdisplaydata[id].imgUrl),
             Container(
               child: Text(
                 fruitsdisplaydata[id].title,
@@ -69,8 +78,8 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
 
 class CurvedShape extends StatelessWidget {
   final double ht;
-
-  CurvedShape({@required this.ht});
+  final String imgUrl;
+  CurvedShape({@required this.ht , @required this.imgUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +89,10 @@ class CurvedShape extends StatelessWidget {
       child: CustomPaint(
         child: Container(
           padding: EdgeInsets.all(20),
+          margin: EdgeInsets.all(80),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image : AssetImage('images/apple.jpg'),
+              image : AssetImage( imgUrl ),
               fit: BoxFit.scaleDown,
             ),
           ),
