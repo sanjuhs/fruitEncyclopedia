@@ -17,6 +17,7 @@ class _GridCardState extends State<GridCard> {
 
   Widget build(BuildContext context) {
     return Card(
+      //color: Colors.yellow[100],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5)
       ),

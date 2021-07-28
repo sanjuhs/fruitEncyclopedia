@@ -39,7 +39,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     return ChangeNotifierProvider(
       create: (ctx) => FruitsInfo(),
       child: Scaffold(
-        backgroundColor: fruitsdisplaydata[id].color1,
+        backgroundColor: Colors.white,//fruitsdisplaydata[id].color1,
         body: Stack(
           children: [
             ListView(
@@ -144,11 +144,33 @@ class CurvedShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
+
       children: [
-          Container(
+
+        Container(
+          transform: Matrix4.translationValues(0.0, -70.0, 0.0),
+          width: double.infinity,
+          height: ht,
+          child: CustomPaint(
+            child: Container(
+              transform: Matrix4.translationValues(0.0, 80.0, 0.0),
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imgUrl),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+            painter: _MyPainter(),
+          ),
+        ),
+                  Container(
+                    
             width: double.infinity,
-            color: Colors.white,
+            //color: Colors.white,
             child: Row(
               children: [
                 IconButton(
@@ -162,23 +184,6 @@ class CurvedShape extends StatelessWidget {
               ],
             ),
           ),
-        Container(
-          width: double.infinity,
-          height: ht,
-          child: CustomPaint(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(0),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(imgUrl),
-                  fit: BoxFit.scaleDown,
-                ),
-              ),
-            ),
-            painter: _MyPainter(),
-          ),
-        ),
       ],
     );
   }
@@ -190,7 +195,7 @@ class _MyPainter extends CustomPainter {
     Paint paint = new Paint()
       ..style = PaintingStyle.fill
       ..isAntiAlias = true
-      ..color = Colors.white;
+      ..color = Colors.yellow[100];
 
     final height = size.height;
     final width = size.width;
@@ -237,7 +242,7 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.yellow[100]
       ..style = PaintingStyle.fill;
     Path path = Path()..moveTo(0, 20);
     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
