@@ -105,6 +105,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
         ],),
         GridView.builder(
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 0.75,
             crossAxisCount: 2,

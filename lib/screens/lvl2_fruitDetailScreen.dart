@@ -156,7 +156,7 @@ class CurvedShape extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back_ios_new),
+                  icon: Icon(Icons.arrow_back_ios),
                   iconSize: 28,
                 ),
               ],
@@ -168,7 +168,7 @@ class CurvedShape extends StatelessWidget {
           child: CustomPaint(
             child: Container(
               padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(80),
+              margin: EdgeInsets.all(0),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(imgUrl),

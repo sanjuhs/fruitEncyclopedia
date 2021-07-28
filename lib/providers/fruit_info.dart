@@ -19,7 +19,7 @@ class FruitsInfo with ChangeNotifier{
       color1:Colors.redAccent,
       color2:Colors.amber,
       tags: [],
-      imgUrl: 'images/1_2_greenapple.png',
+      imgUrl: 'images/3_1_banana.webp',
     ),
     Fruit(
       id:'p2',
@@ -28,7 +28,7 @@ class FruitsInfo with ChangeNotifier{
       color1:Colors.redAccent,
       color2:Colors.amber,
       tags: [],
-      imgUrl: 'images/1_2_greenapple.png',
+      imgUrl: 'images/3_1_banana.png',
     ),
     Fruit(
       id:'p3',
