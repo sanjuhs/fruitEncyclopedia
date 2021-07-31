@@ -39,7 +39,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     return ChangeNotifierProvider(
       create: (ctx) => FruitsInfo(),
       child: Scaffold(
-        backgroundColor: Colors.white,//fruitsdisplaydata[id].color1,
+        backgroundColor: Colors.white, //fruitsdisplaydata[id].color1,
         body: Stack(
           children: [
             ListView(
@@ -94,20 +94,25 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconButton(
-                            disabledColor: Colors.green,
-                            icon: Icon(
-                              Icons.arrow_back,
-                              size: 32.0,
-                            ),
-                            onPressed: () {
-                              if(id == 0){
-                                return null;
-                              }
-                              setState(() {
-                                id = id - 1;
-                              });    
-                            }
-                          ),
+                              disabledColor: Colors.green,
+                              icon: Icon(
+                                Icons.arrow_back,
+                                size: 32.0,
+                              ),
+                              onPressed: () {
+                                if (id == 0) {
+                                  return null;
+                                }
+                                // setState(() {
+                                //   id = id - 1;
+                                // });
+                                //adding navigator push to proceed to next page. this is to introduce page transition effects
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Lv2FruitDetails(id - 1)));
+                              }),
                           IconButton(
                             disabledColor: Colors.grey,
                             icon: Icon(
@@ -115,12 +120,42 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                               size: 32.0,
                             ),
                             onPressed: () {
-                              if(id == fruitsdisplaydata.length-1){
+                              if (id == fruitsdisplaydata.length - 1) {
                                 return null;
                               }
-                              setState((){
-                                id = id + 1;
-                              });
+                              // setState((){
+                              //   id = id + 1;
+                              // });
+
+                              //adding navigator push to proceed to next page. this is to introduce page transition effects
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Lv2FruitDetails(id + 1),
+                                ),
+                              );
+                              // Navigator.push(
+                              //   context,
+                              //   PageRouteBuilder(
+                              //     transitionDuration: Duration(milliseconds: 200),
+                              //     transitionsBuilder: (BuildContext context,
+                              //         Animation<double> animation,
+                              //         Animation<double> secondaryAnimation,
+                              //         Widget child) {
+                              //           animation = CurvedAnimation(parent: animation, curve: Curves.easeIn);
+                              //       return ScaleTransition(
+                              //         alignment: Alignment.center,
+                              //         scale: animation,
+                              //         child: child,
+                              //       );
+                              //     },
+                              //     pageBuilder: (BuildContext context,
+                              //         Animation<double> animation,
+                              //         Animation<double> secondaryAnimation) {
+                              //       return Lv2FruitDetails(id + 1);
+                              //     },
+                              //   ),
+                              // );
                             },
                           ),
                         ],
@@ -145,9 +180,7 @@ class CurvedShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-
       children: [
-
         Container(
           transform: Matrix4.translationValues(0.0, -70.0, 0.0),
           width: double.infinity,
@@ -167,23 +200,25 @@ class CurvedShape extends StatelessWidget {
             painter: _MyPainter(),
           ),
         ),
-                  Container(
-                    
-            width: double.infinity,
-            //color: Colors.white,
-            child: Row(
-              children: [
-                IconButton(
-                  splashColor: Colors.grey,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.arrow_back_ios),
-                  iconSize: 28,
-                ),
-              ],
-            ),
+        Container(
+          width: double.infinity,
+          //color: Colors.white,
+          child: Row(
+            children: [
+              IconButton(
+                splashColor: Colors.grey,
+                onPressed: () {
+                  // Navigator.pop(context);
+
+                  //since we have added navigator.push for page transitions, we need to pop all
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                },
+                icon: Icon(Icons.arrow_back_ios),
+                iconSize: 28,
+              ),
+            ],
           ),
+        ),
       ],
     );
   }
