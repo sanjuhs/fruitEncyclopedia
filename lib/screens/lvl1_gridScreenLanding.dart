@@ -113,7 +113,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
             mainAxisSpacing: 10,
           ),
           itemBuilder: (context, i) => GridCard(
-              fruitsdisplaydata[i].title, fruitsdisplaydata[i].imgUrl, i),
+              fruitsdisplaydata[i].title, fruitsdisplaydata[i].imgUrl, i , fruitsdisplaydata[i].color1),
           // Container(
           //   child: Text(fruitsdisplaydata[i].title),
           //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),

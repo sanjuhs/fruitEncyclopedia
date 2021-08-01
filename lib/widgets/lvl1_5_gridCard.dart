@@ -6,7 +6,8 @@ class GridCard extends StatefulWidget {
   final String titlee;
   final String imgUrl;
   final int index;
-  GridCard(  this.titlee , this.imgUrl , this.index);
+  final Color color1;
+  GridCard(  this.titlee , this.imgUrl , this.index ,this.color1);
 
   @override
   _GridCardState createState() => _GridCardState();
@@ -30,7 +31,10 @@ class _GridCardState extends State<GridCard> {
               Expanded( child: Image.asset( widget.imgUrl , fit: BoxFit.cover,) ,),
               SizedBox(width: 10,) ,
             ]),
-            Text(widget.titlee),
+            Container(child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.titlee),
+            ) , decoration: BoxDecoration(color: widget.color1 , borderRadius: BorderRadius.circular(5)),),
           ],
         ),
         onTap: (){

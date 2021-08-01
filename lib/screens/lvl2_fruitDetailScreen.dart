@@ -137,7 +137,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                               // Navigator.push(
                               //   context,
                               //   PageRouteBuilder(
-                              //     transitionDuration: Duration(milliseconds: 200),
+                              //     transitionDuration: Duration(milliseconds: 1000),
                               //     transitionsBuilder: (BuildContext context,
                               //         Animation<double> animation,
                               //         Animation<double> secondaryAnimation,
