@@ -73,6 +73,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                     ),
                   ),
                 ),
+                SizedBox(height: 70,)
               ],
             ),
             Positioned(
@@ -107,7 +108,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 //   id = id - 1;
                                 // });
                                 //adding navigator push to proceed to next page. this is to introduce page transition effects
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
@@ -128,7 +129,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                               // });
 
                               //adding navigator push to proceed to next page. this is to introduce page transition effects
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => Lv2FruitDetails(id + 1),
