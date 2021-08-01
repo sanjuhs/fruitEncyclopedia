@@ -45,7 +45,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
             ListView(
               children: <Widget>[
                 CurvedShape(
-                    ht: curveHeight, imgUrl: fruitsdisplaydata[id].imgUrl),
+                    ht: curveHeight, imgUrl: fruitsdisplaydata[id].imgUrl, color: fruitsdisplaydata[id].color1,),
                 Container(
                   //transform here is to move the title upwards
                   transform: Matrix4.translationValues(0.0, -20.0, 0.0),
@@ -85,7 +85,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                   children: [
                     CustomPaint(
                       size: Size(size.width, 80),
-                      painter: BNBCustomPainter(),
+                      painter: BNBCustomPainter(color: fruitsdisplaydata[id].color1),
                     ),
                     Container(
                       width: size.width,
@@ -175,7 +175,8 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
 class CurvedShape extends StatelessWidget {
   final double ht;
   final String imgUrl;
-  CurvedShape({@required this.ht, @required this.imgUrl});
+  final Color color;
+  CurvedShape({@required this.ht, @required this.imgUrl, @required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +198,7 @@ class CurvedShape extends StatelessWidget {
                 ),
               ),
             ),
-            painter: _MyPainter(),
+            painter: _MyPainter(color: color),
           ),
         ),
         Container(
@@ -225,12 +226,16 @@ class CurvedShape extends StatelessWidget {
 }
 
 class _MyPainter extends CustomPainter {
+ final Color color;
+
+ _MyPainter({this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
       ..style = PaintingStyle.fill
       ..isAntiAlias = true
-      ..color = Colors.yellow[100];
+      ..color = color;
 
     final height = size.height;
     final width = size.width;
@@ -274,10 +279,14 @@ class _MyPainter extends CustomPainter {
 }
 
 class BNBCustomPainter extends CustomPainter {
+  final Color color;
+
+  BNBCustomPainter({this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.yellow[100]
+      ..color = color
       ..style = PaintingStyle.fill;
     Path path = Path()..moveTo(0, 20);
     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
