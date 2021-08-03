@@ -44,11 +44,11 @@ In 2017, world production of bananas and plantains combined was 153 million tonn
     Fruit(
       id:'p4',
       title:'Orange',
-      description:''' "The orange originated in a region encompassing Southern China, Northeast India, and Myanmar, and the earliest mention of the sweet orange was in Chinese literature in 314 BC. As of 1987, orange trees were found to be the most cultivated fruit tree in the world. The fruit of the orange tree can be eaten fresh, or processed for its juice or fragrant peel.
+      description:'''The orange originated in a region encompassing Southern China, Northeast India, and Myanmar, and the earliest mention of the sweet orange was in Chinese literature in 314 BC. As of 1987, orange trees were found to be the most cultivated fruit tree in the world. The fruit of the orange tree can be eaten fresh, or processed for its juice or fragrant peel.
 
 The word orange derives from the Sanskrit word for ""orange tree"" (nāraṅga), which in turn derives from a Dravidian root word narandam/naranja which refers to Bitter orange in Tamil and Malayalam.
 
-In 2019, 79 million tonnes of oranges were grown worldwide, with Brazil producing 22% of the total, followed by China and India."''',
+In 2019, 79 million tonnes of oranges were grown worldwide, with Brazil producing 22% of the total, followed by China and India.''',
       color1:Colors.orange[100],
       color2:Colors.amber,
       tags: [],
@@ -101,7 +101,7 @@ China was the largest producer of grapes, accounting for 16.9% of global product
 The mature winter melon is a cooking vegetable that is widely used in Asia, especially in India. The immature melons are used as a culinary fruit (e.g., to make a distinctive fruit drink).
 
 In 2018, world production of melons was 27 million tonnes, led by China with 46% of the total. Turkey, Iran, and India each produced more than 1 million tonnes. ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.yellow[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_08_melon.webp',
@@ -114,7 +114,7 @@ In 2018, world production of melons was 27 million tonnes, led by China with 46%
 The flesh and juice of the pineapple are used in cuisines around the world. In many tropical countries, pineapple is prepared and sold on roadsides as a snack.
 
 In 2019, world production of pineapples was 28.2 million tonnes, led by Costa Rica, the Philippines, Brazil, and Indonesia as the largest producers. ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.amber[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_09_pineapple.webp',
@@ -127,7 +127,7 @@ In 2019, world production of pineapples was 28.2 million tonnes, led by Costa Ri
 The taste of the plum fruit ranges from sweet to tart; the skin itself may be particularly tart. It is juicy and can be eaten fresh or used in jam-making or other recipes. Plum juice can be fermented into plum wine. 
 
 In 2019, global production of plums (data combined with sloes) was 12.6 million tonnes, led by China with 56% of the world total ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.purple[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_10_plum.webp',
@@ -140,7 +140,7 @@ In 2019, global production of plums (data combined with sloes) was 12.6 million 
 Kiwifruit may be eaten raw, made into juices, used in baked goods, prepared with meat or used as a garnish. The actinidain found in kiwifruit can be an allergen for some individuals, including children.
 
 In 2018, global production of kiwifruit was 4 million tonnes, led by China with slightly more than half of the world total. Italy, New Zealand, Iran, Greece and Chile were other significant producers.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.lightGreenAccent[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_11_kiwi.webp',
@@ -153,7 +153,7 @@ In 2018, global production of kiwifruit was 4 million tonnes, led by China with 
 Evidence of the cultivation of watermelon in the Nile Valley has been found from the second millennium BC onward, and seeds of both species have been found at Twelfth Dynasty sites and in the tomb of Pharaoh Tutankhamun. Watermelons were cultivated for their high water content and were stored to be eaten during dry seasons, not only as a food source, but as a method of storing water.
 
 In 2017, global production of watermelons was 118 million tonnes, with China alone accounting for 67% of the total. Secondary producers included Iran, Turkey, and Brazil.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.green[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_12_watermellon.webp',
@@ -167,7 +167,7 @@ In many countries, guava is eaten raw, typically cut into quarters or eaten like
 
 In 2019, world production of guavas was 55 million tonnes, led by India with 45% of the total. Other major producers were China and Thailand.
   ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.pink[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_13_guava.webp',
@@ -180,7 +180,7 @@ In 2019, world production of guavas was 55 million tonnes, led by India with 45%
 Mangoes are generally sweet, although the taste and texture of the flesh varies across cultivars; some, such as Alphonso, have a soft, pulpy, juicy texture similar to an overripe plum, while others, such as Tommy Atkins, are firmer, like a cantaloupe or avocado, with a fibrous texture.
 
 In 2019, global production of mangoes (report includes mangosteens and guavas) was 56 million tonnes, led by India with 46% (26 million tonnes) of the world total ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.orangeAccent[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_14_mango.webp',
@@ -193,7 +193,7 @@ In 2019, global production of mangoes (report includes mangosteens and guavas) w
 The Chinese associate the apricot with education and medicine. Dried apricots are a type of traditional dried fruit. The world's largest producer of dried apricots is Turkey.
 
 In 2019, world production of apricots was 4.1 million tonnes, led by Turkey with 21% of the world total. Other major producers (in descending order) were Uzbekistan, Iran, Italy, and Algeria.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.amberAccent[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_15_apricot.webp',
@@ -220,7 +220,7 @@ The name coconut is derived from the 16th-century Portuguese word coco, meaning 
 
 In 2019, world production of coconuts was 62 million tonnes, led by Indonesia, the Philippines, and India, with 75% combined of the total
 ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.brown[200],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_17_coconut.webp',
@@ -233,7 +233,7 @@ In 2019, world production of coconuts was 62 million tonnes, led by Indonesia, t
 The exact place of origin of date palm is uncertain because of long cultivation, according to some sources it probably originated from the Fertile Crescent region straddling Egypt and Mesopotamia, while others state that they are native to the Persian Gulf area or even western India. Fossil records show that the date palm has existed for at least 50 million years.
 
 Dates are reported to have good potential in diabetes treatment due to the presence of polyphenols exerting strong antioxidant activities. The total annual world production of dates amounts to 8.5 million metric tons, countries of the Middle East and North Africa being the largest producers. ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.lime[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_18_date.webp',
@@ -246,7 +246,7 @@ Dates are reported to have good potential in diabetes treatment due to the prese
 Lychee seeds contain methylene cyclopropyl glycine which can cause hypoglycemia associated with outbreaks of encephalopathy in undernourished Indian and Vietnamese children who had consumed lychee fruit.
 
 China is the main producer of lychees, followed by India, other countries in Southeast Asia, the Indian Subcontinent, Madagascar and South Africa.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.deepOrange[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_19_lychee.webp',
@@ -257,7 +257,7 @@ China is the main producer of lychees, followed by India, other countries in Sou
       description:'''The Granny Smith, the most common type of green apple is a tip-bearing apple variant which originated in Australia in 1868. It is named after Maria Ann Smith, who propagated the variant. 
 
 Its acidity and strong taste makes it a frequent choice for both baking and for eating as a hand fruit. In 1968, the rock band The Beatles used an image of a Granny Smith apple as the logo for their corporation, Apple Corps Limited. For their record label, Apple Records, one side of vinyl albums featured the exterior of the fruit whilst the other side of the recording featured a cross-section of the apple.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.lightGreen[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_20_greenapple.webp',
@@ -270,7 +270,7 @@ Its acidity and strong taste makes it a frequent choice for both baking and for 
 The blackcurrant is native to northern Europe and Asia. Cultivation in Europe is thought to have started around the last decades of the 17th century. During World War II, most fruits rich in vitamin C, such as oranges, became difficult to obtain in the United Kingdom. Since blackcurrant berries are a rich source of the vitamin, and blackcurrant plants are suitable for growing in the UK climate, the British Government encouraged their cultivation and soon the yield of the nation's crop increased significantly.
 
 The leader in production is Russia (208,000 t), followed by Poland and Germany.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.deepPurple[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_21_blackcurrant.webp',
@@ -283,7 +283,7 @@ The leader in production is Russia (208,000 t), followed by Poland and Germany. 
 Blueberries are sold fresh or are processed as individually quick frozen (IQF) fruit, purée, juice, or dried or infused berries. These may then be used in a variety of consumer goods, such as jellies, jams, pies, muffins, snack foods, or as an additive to breakfast cereals.
 
 In 2019, world production of blueberries (lowbush and highbush combined) was 823,328 tonnes, led by the United States with 38% of global production and Canada with 21%. ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.indigo[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_22_blueberry.webp',
@@ -296,7 +296,7 @@ In 2019, world production of blueberries (lowbush and highbush combined) was 823
 As fresh cranberries are hard, sour, and bitter, about 95% of cranberries are processed and used to make cranberry juice and sauce. They are also sold dried and sweetened. Cranberry juice is usually sweetened or blended with other fruit juices to reduce its natural tartness. 
 
 In 2019, world production of cranberry was 687,534 tonnes, mainly by the United States, Canada, and Chile, which collectively accounted for 97% of the global total. ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.red[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_23_cranberry.webp',
@@ -309,7 +309,7 @@ In 2019, world production of cranberry was 687,534 tonnes, mainly by the United 
 Gooseberries are edible and can be eaten raw, or cooked as an ingredient in desserts, such as pies, fools and crumbles. Early pickings are generally sour and more appropriate for culinary use. Gooseberries are also used to flavor beverages such as sodas, flavored waters, or milk, and can be made into fruit wines and teas. Nutritionally, gooseberries are a rich source of vitamin C.
 
 Indonesia is the largest producer of gooseberry, followed by Philippines, India and Brazil.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.lime[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_24_gooseberry.webp',
@@ -335,7 +335,7 @@ At the global level, India is the world's largest producer of pomegranates, foll
 The origin of muskmelons is not known. Research has revealed that seeds and rootstocks were among the goods traded along the caravan routes of the Ancient World. Some botanists consider melons native to the Levant and Egypt, while others place their origin in Iran, India or Central Asia.
 
 China is the largest producer of muskmelon, followed by Turkey, Iran and Egypt.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.amber[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_26_muskmelon.webp',
@@ -346,7 +346,7 @@ China is the largest producer of muskmelon, followed by Turkey, Iran and Egypt. 
       description:'''One of the earliest known instances of blackberry consumption comes from Denmark approximately 2,500 years ago. Blackberry plants were used for traditional medicine by Greeks, other European peoples, and aboriginal Americans. A 1771 document described brewing blackberry leaves, stem, and bark for stomach ulcers.
 
 Folklore in the United Kingdom and Ireland tells that blackberries should not be picked after Old Michaelmas Day (11 October) as the devil (or a Púca) has made them unfit to eat by stepping, spitting or fouling on them. Blackberry leaves are food for certain caterpillars; some grazing mammals, especially deer, are also very fond of the leaves. ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.deepPurple[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_27_blackberry.webp',
@@ -359,7 +359,7 @@ Folklore in the United Kingdom and Ireland tells that blackberries should not be
 Fruits are dark greening brown in colour and marked with depressions giving it a quilted appearance; its pulp is reddish yellow, sweetish, and very soft (hence the common name); the kernels of the seeds are said to be poisonous.
 
 Custard apples common in China, Phillippines, Egypt and Central Africa and India.  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.amberAccent[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_28_custardapple.webp',
@@ -372,7 +372,7 @@ Custard apples common in China, Phillippines, Egypt and Central Africa and India
 The first garden strawberry was grown in Brittany, France, during the late 18th century. Prior to this, wild strawberries and cultivated selections from wild strawberry species were the common source of the fruit. The strawberry fruit was mentioned in ancient Roman literature in reference to its medicinal use. The French began taking the strawberry from the forest to their gardens for harvest in the 14th century.
 
 In 2019, world production of strawberries was 8.9 million tonnes, led by China with 40% of the total, and the United States and Mexico as other significant producers  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.pink[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_29_strawberry.webp',
@@ -385,7 +385,7 @@ In 2019, world production of strawberries was 8.9 million tonnes, led by China w
 Regarded as the world's most popular aroma and flavor, vanilla is a widely used aroma and flavor compound for foods, beverages and cosmetics, as indicated by its popularity as an ice cream flavor. Although vanilla is a prized flavoring agent on its own, it is also used to enhance the flavor of other substances, to which its own flavor is often complementary, such as chocolate, custard, caramel, coffee, and others. Vanilla is a common ingredient in Western sweet baked goods, such as cookies and cakes
 
 In 2018, world production of vanilla was 7,575 tonnes, led by Madagascar with 41.0% of the total, and Indonesia with 29.8%.''',
-      color1:Colors.redAccent[100],
+      color1:Colors.blueGrey[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_30_vanilla.webp',
@@ -399,7 +399,7 @@ The jackfruit has played a significant role in Indian agriculture for centuries.
 
 In 2017, India produced 1.4 million tonnes of jackfruit, followed by Bangladesh, Thailand, and Indonesia.
  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.lightGreenAccent[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_31_jackfruit.webp',
@@ -414,7 +414,7 @@ The tamarind tree produces brown, pod-like fruits that contain a sweet, tangy pu
 In hens, tamarind has been found to lower cholesterol in their serum, and in the yolks of the eggs they laid. Due to a lack of available human clinical trials, there is insufficient evidence to recommend tamarind for the treatment of hypercholesterolemia or diabetes.
 
  ''',
-      color1:Colors.redAccent[100],
+      color1:Colors.brown[100],
       color2:Colors.amber,
       tags: [],
       imgUrl: 'images/2_32_tamarind.webp',
