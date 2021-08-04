@@ -194,7 +194,7 @@ class CurvedShape extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(imgUrl),
+                  image: AssetImage('assets/'+imgUrl),
                   fit: BoxFit.scaleDown,
                 ),
               ),

@@ -28,7 +28,7 @@ class _GridCardState extends State<GridCard> {
             SizedBox(height: 20,),
             Row(children: [ 
               SizedBox(width: 10,),
-              Expanded( child: Image.asset( widget.imgUrl , fit: BoxFit.cover,) ,),
+              Expanded( child: Image.asset( 'assets/'+widget.imgUrl , fit: BoxFit.cover,) ,),
               SizedBox(width: 10,) ,
             ]),
             Container(child: Padding(
