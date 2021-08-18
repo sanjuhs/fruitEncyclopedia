@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:myapp8_fruit_encyclopedia/widgets/lv1_5_FilterDialog.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lvl1_5_gridCard.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp8_fruit_encyclopedia/models/fruit.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
+import 'package:myapp8_fruit_encyclopedia/widgets/lv1_5_navigationBar.dart';
 
 import 'dart:math';
 
@@ -50,7 +52,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
           //Cropped child Widget
           child: Container(
             //height
-            height: size.height * 0.4,
+            height: size.height * 0.2,
             //The style of a linear gradient color
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -66,17 +68,32 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
   }
 
   ///Code listing 8-31 top aligned text
-  /// 
+  ///
   Positioned buildTopText(Size size) {
     return Positioned(
-      top: size.height * 0.15,
+      top: size.height * 0.05,
       left: 0,
       right: 0,
-      child: Text(
-        "Fruitsopedia",
-        textAlign: TextAlign.center,
-        style: TextStyle(
-            fontSize: 33, color: Colors.white, fontWeight: FontWeight.bold),
+      child: Column(
+        children: [
+          Text(
+            "Fruit-pedia",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              "Learn More ",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -88,6 +105,16 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     super.dispose();
   }
 
+  void _showFilterDialog() {
+    print('here in showDialogBox');
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return CustomDialogBox(title: 'atharva',descriptions: 'heyjj',text: 'yes',);
+          return FilterDialog();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final fruitsData = Provider.of<FruitsInfo>(context);
@@ -96,34 +123,49 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body: ListView(
-      shrinkWrap: true,
-      children: [
-        Stack(children:[
-          buildFirstAnimation(size),
-          buildTopText(size),
-        ],),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 0.75,
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+      body: Stack(
+        children: [
+          ListView(
+            shrinkWrap: true,
+            children: [
+              Stack(
+                children: [
+                  buildFirstAnimation(size),
+                  buildTopText(size),
+                ],
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 0.75,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: (context, i) => GridCard(
+                    fruitsdisplaydata[i].title,
+                    fruitsdisplaydata[i].imgUrl,
+                    i,
+                    fruitsdisplaydata[i].color1),
+                // Container(
+                //   child: Text(fruitsdisplaydata[i].title),
+                //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
+                //need to add widget above
+                itemCount: fruitsdisplaydata.length,
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 0, bottom: 10.0),
+                // padding: const EdgeInsets.all(0),
+              ),
+            ],
           ),
-          itemBuilder: (context, i) => GridCard(
-              fruitsdisplaydata[i].title, fruitsdisplaydata[i].imgUrl, i , fruitsdisplaydata[i].color1),
-          // Container(
-          //   child: Text(fruitsdisplaydata[i].title),
-          //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
-          //need to add widget above
-          itemCount: fruitsdisplaydata.length,
-          padding: const EdgeInsets.only(left:10,right:10,top:0,bottom: 10.0),
-          // padding: const EdgeInsets.all(0),
-        ),
-      ],
-    ));
+          // FilterDialog(),
+          BottomNavbar(
+            showDialogBox: _showFilterDialog,
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -144,7 +186,7 @@ class HeaderClipper extends CustomClipper<Path> {
     //Calculate the coordinates of control point P1
     double xCenter =
         size.width * 0.5 + (size.width * 0.6 + 1) * sin(moveFlag * pi);
-    double yCenter = size.height * 0.8 + 69 * cos(moveFlag * pi);
+    double yCenter = size.height * 0.8 + 39 * cos(moveFlag * pi);
     //Construction of second order Bessel curve
     path.quadraticBezierTo(xCenter, yCenter, size.width, size.height * 0.8);
 

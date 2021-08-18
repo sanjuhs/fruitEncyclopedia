@@ -76,6 +76,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                 SizedBox(height: 70,)
               ],
             ),
+            //the navigation bar
             Positioned(
               bottom: 0,
               left: 0,
