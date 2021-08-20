@@ -8,7 +8,6 @@ import "package:flutter/material.dart";
 
 import 'package:provider/provider.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
-import 'package:myapp8_fruit_encyclopedia/models/fruit.dart';
 
 import 'dart:math';
 
@@ -34,7 +33,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     final curveHeight = height * 0.6;
 
     final fruitsData = Provider.of<FruitsInfo>(context);
-    final fruitsdisplaydata = fruitsData.fruitlist;
+    final fruitsdisplaydata = fruitsData.fruitsListNew;
 
     return ChangeNotifierProvider(
       create: (ctx) => FruitsInfo(),
@@ -45,12 +44,12 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
             ListView(
               children: <Widget>[
                 CurvedShape(
-                    ht: curveHeight, imgUrl: fruitsdisplaydata[id].imgUrl, color: fruitsdisplaydata[id].color1,),
+                    ht: curveHeight, imgUrl: fruitsdisplaydata[id]['imgUrl'], color: fruitsdisplaydata[id]['color1'],),
                 Container(
                   //transform here is to move the title upwards
                   transform: Matrix4.translationValues(0.0, -20.0, 0.0),
                   child: Text(
-                    fruitsdisplaydata[id].title,
+                    fruitsdisplaydata[id]['cmnName'],
                     textDirection: TextDirection.ltr,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -64,7 +63,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                   child: Center(
                     child: RichText(
                       text: TextSpan(
-                        text: fruitsdisplaydata[id].description,
+                        text: fruitsdisplaydata[id]['description'],
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -87,7 +86,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                   children: [
                     CustomPaint(
                       size: Size(size.width, 80),
-                      painter: BNBCustomPainter(color: fruitsdisplaydata[id].color1),
+                      painter: BNBCustomPainter(color: fruitsdisplaydata[id]['color1']),
                     ),
                     Container(
                       width: size.width,
