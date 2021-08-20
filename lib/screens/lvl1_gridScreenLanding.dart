@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lv1_5_FilterDialog.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lvl1_5_gridCard.dart';
 import 'package:provider/provider.dart';
-import 'package:myapp8_fruit_encyclopedia/models/fruit.dart';
+
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lv1_5_navigationBar.dart';
 
@@ -118,7 +118,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
   @override
   Widget build(BuildContext context) {
     final fruitsData = Provider.of<FruitsInfo>(context);
-    final fruitsdisplaydata = fruitsData.fruitlist;
+    final fruitsdisplaydata = fruitsData.fruitsListNew;
 
     Size size = MediaQuery.of(context).size;
 
@@ -144,10 +144,10 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
                   mainAxisSpacing: 10,
                 ),
                 itemBuilder: (context, i) => GridCard(
-                    fruitsdisplaydata[i].title,
-                    fruitsdisplaydata[i].imgUrl,
+                    fruitsdisplaydata[i]['cmnName'],
+                    fruitsdisplaydata[i]['imgUrl'],
                     i,
-                    fruitsdisplaydata[i].color1),
+                    fruitsdisplaydata[i]['color1']),
                 // Container(
                 //   child: Text(fruitsdisplaydata[i].title),
                 //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
