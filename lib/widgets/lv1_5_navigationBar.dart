@@ -12,10 +12,7 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      child: Container(
+    return Container(
         width: size.width,
         height: 80,
         child: Stack(
@@ -96,7 +93,6 @@ class BottomNavbar extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }

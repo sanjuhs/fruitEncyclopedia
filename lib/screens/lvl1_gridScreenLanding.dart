@@ -105,28 +105,40 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     super.dispose();
   }
 
-  void _showFilterDialog() {
-    print('here in showDialogBox');
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          // return CustomDialogBox(title: 'atharva',descriptions: 'heyjj',text: 'yes',);
-          return FilterDialog();
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final fruitsData = Provider.of<FruitsInfo>(context);
-    final fruitsdisplaydata = fruitsData.fruitsListNew;
+    var fruitsData = Provider.of<FruitsInfo>(context);
+    var fruitsdisplaydata = fruitsData.fruitsListNew;
+
+    void _sortFruitsTrigger(bool alphabetically) {
+      print('got the trigger');
+
+      setState(() {
+        fruitsData.sortFruits(alphabetically);
+      });
+    }
+
+    void _runFilter(keyword) {
+      if (keyword.isEmpty) {
+        setState(() {
+          fruitsdisplaydata = fruitsData.fruitsListNew;
+        });
+      } else {
+        setState(() {
+          fruitsData.searchFruitsProvider(keyword);
+        });
+      }
+    }
 
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           ListView(
-            shrinkWrap: true,
+            // shrinkWrap: true,
+            padding: EdgeInsets.only(bottom: 100),
             children: [
               Stack(
                 children: [
@@ -159,9 +171,24 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
               ),
             ],
           ),
-          // FilterDialog(),
-          BottomNavbar(
-            showDialogBox: _showFilterDialog,
+          Positioned(
+            left: 0,
+            bottom: 0,
+            child: BottomNavbar(
+              showDialogBox: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ChangeNotifierProvider(
+                        create: (ctx) => FruitsInfo(),
+                        child: FilterDialog(
+                          sortHandler: _sortFruitsTrigger,
+                          searchHandler: _runFilter,
+                        ),
+                      );
+                    });
+              },
+            ),
           ),
         ],
       ),

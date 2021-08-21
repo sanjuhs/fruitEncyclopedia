@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lvl1_gridScreenLanding.dart';
-import 'package:provider/provider.dart';
-import 'package:myapp8_fruit_encyclopedia/screens/lvl2_fruitDetailScreen.dart';
+import 'package:myapp8_fruit_encyclopedia/providers/favourites.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -10,8 +12,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx)=> FruitsInfo(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => FruitsInfo(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Favourites(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -23,8 +32,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 
 // class MyHomePage extends StatefulWidget {
 //   MyHomePage({Key key, this.title}) : super(key: key);
