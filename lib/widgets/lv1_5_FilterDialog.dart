@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 
 class FilterDialog extends StatefulWidget {
-  Function sortHandler, searchHandler;
-  FilterDialog({this.sortHandler, this.searchHandler});
+  Function sortHandler, searchHandler, resetHandler;
+  FilterDialog({this.sortHandler, this.searchHandler, this.resetHandler});
 
   @override
   _FilterDialogState createState() => _FilterDialogState();
@@ -26,31 +26,33 @@ class _FilterDialogState extends State<FilterDialog> {
     TextEditingController _controller1 = TextEditingController();
     _controller1.text = searchString;
 
-    return Container(
-      margin: EdgeInsets.only(top: 0.3 * size.height),
-      child: Dialog(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        child: ClipPath(
-          clipper: DialogClipper(),
-          child: Container(
-            width: size.width,
-            height: 0.3 * size.height,
-            decoration: BoxDecoration(color: Colors.yellow),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: size.width,
-                  height: 20,
-                  child: IconButton(
-                    alignment: Alignment.topRight,
-                    icon: Icon(
-                      Icons.cancel_rounded,
+    return  Container(
+        margin: EdgeInsets.only(top: 0.3 * size.height),
+        child: Dialog(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          child: ClipPath(
+            clipper: DialogClipper(),
+            child: Container(
+              width: size.width,
+              height: 0.3 * size.height,
+              decoration: BoxDecoration(color: Colors.yellow),
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: size.width,
+                    height: 20,
+                    child: IconButton(
+                      alignment: Alignment.topRight,
+                      icon: Icon(
+                        Icons.cancel_rounded,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
+
                 ),
                 Text('Sort By Alphabet:'),
                 Row(
@@ -82,10 +84,40 @@ class _FilterDialogState extends State<FilterDialog> {
                   child: Text('Load All Fruits'),
                 )
               ],
+
+                  Text('Sort By Alphabet:'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            // Provider.of<FruitsInfo>(context).sortFruits(true);
+                            widget.sortHandler(true);
+                          },
+                          child: Text('A-Z')),
+                      ElevatedButton(
+                          onPressed: () {
+                            widget.sortHandler(false);
+                          },
+                          child: Text('Z-A')),
+                    ],
+                  ),
+                  TextField(
+                    controller: _controller1,
+                    onChanged: (value) => widget.searchHandler(value),
+                    decoration: InputDecoration(
+                        labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => widget.resetHandler(),
+                    child: Text('Load All Fruits'),
+                  )
+                ],
+              ),
+
             ),
           ),
         ),
-      ),
     );
     // return Container(
     //   child: Text('suhas'),

@@ -131,7 +131,10 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
       }
     }
 
-    
+    void _loadAll(){
+      fruitsData.searchFruitsProvider('');
+    }
+
 
     Size size = MediaQuery.of(context).size;
 
@@ -187,6 +190,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
                         child: FilterDialog(
                           sortHandler: _sortFruitsTrigger,
                           searchHandler: _runFilter,
+                          resetHandler: _loadAll,
                         ),
                       );
                     });
