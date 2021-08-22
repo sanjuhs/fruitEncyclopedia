@@ -23,7 +23,7 @@ class Lv2FruitDetails extends StatefulWidget {
 class _Lv2FruitDetails extends State<Lv2FruitDetails> {
   int id;
   List<String> favListJSON = [];
-  List<String> idsList = ["1","2"];
+  List<String> idsList = [];
   List<Map<String, dynamic>> favListFinal = [];
   SharedPreferences sharedPreferences;
 
