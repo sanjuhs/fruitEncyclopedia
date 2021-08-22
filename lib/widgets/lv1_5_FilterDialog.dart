@@ -17,12 +17,12 @@ class _FilterDialogState extends State<FilterDialog> {
     Size size = MediaQuery.of(context).size;
 
     var fruitsData = Provider.of<FruitsInfo>(context);
-    var fruitsdisplaydata = fruitsData.fruitsListNew;
+    //var fruitsdisplaydata = fruitsData.fruitsListNew;
 
     var searchString = fruitsData.getSearchString;
 
     print(searchString);
-
+    print("hello world");
     TextEditingController _controller1 = TextEditingController();
     _controller1.text = searchString;
 
@@ -77,7 +77,7 @@ class _FilterDialogState extends State<FilterDialog> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    fruitsData.loadAllFruits();
+                    fruitsData.loadAllFruits;
                   },
                   child: Text('Load All Fruits'),
                 )

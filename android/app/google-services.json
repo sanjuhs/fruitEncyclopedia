@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "583859357618",
+    "project_id": "edxperimental-6f126",
+    "storage_bucket": "edxperimental-6f126.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583859357618:android:26bf40d5728e6a901386ab",
+        "android_client_info": {
+          "package_name": "com.edxperimental.Fruitsopedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583859357618-4l64qh4jiuie614afmrhakuvptc68o6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIk9zVX_e6sTe31yRIDJc6BFXwSWcoidE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583859357618-4l64qh4jiuie614afmrhakuvptc68o6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
