@@ -21,6 +21,7 @@ class _FilterDialogState extends State<FilterDialog> {
 
     var searchString = fruitsData.getSearchString;
 
+    print('rebuilding filter dialog');
     print(searchString);
 
     TextEditingController _controller1 = TextEditingController();
@@ -48,7 +49,7 @@ class _FilterDialogState extends State<FilterDialog> {
                         Icons.cancel_rounded,
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context,_controller1.text);
                       },
                     ),
                   ),
@@ -94,12 +95,12 @@ class _FilterDialogState extends State<FilterDialog> {
 class DialogClipper extends CustomClipper<Path> {
   @override
   getClip(Size size) {
-    print(size.width);
+    // print(size.width);
     var path = Path();
     var y = size.height;
     var x = size.width;
-    print(x);
-    print(y);
+    // print(x);
+    // print(y);
     path.moveTo(0 * x, 0 * y);
     // path.quadraticBezierTo(0*x, 0.60*y, 0.1*x, 0.6*y);
 

@@ -121,7 +121,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     void _runFilter(keyword) {
       if (keyword.isEmpty) {
         setState(() {
-          fruitsdisplaydata = fruitsData.fruitsListNew;
+          fruitsData.searchFruitsProvider('');
         });
       } else {
         setState(() {
@@ -130,8 +130,28 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
       }
     }
 
-    void _loadAll(){
+    void _loadAll() {
       fruitsData.searchFruitsProvider('');
+    }
+
+    void showDialogBoxFilter() async {
+      var data = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ChangeNotifierProvider(
+              create: (ctx) => FruitsInfo(),
+              child: FilterDialog(
+                sortHandler: _sortFruitsTrigger,
+                searchHandler: _runFilter,
+                resetHandler: _loadAll,
+              ),
+            );
+          });
+      print(data);
+      setState((){
+         fruitsData.searchFruitsProvider(data);
+      });
+     
     }
 
     Size size = MediaQuery.of(context).size;
@@ -180,18 +200,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
             bottom: 0,
             child: BottomNavbar(
               showDialogBox: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ChangeNotifierProvider(
-                        create: (ctx) => FruitsInfo(),
-                        child: FilterDialog(
-                          sortHandler: _sortFruitsTrigger,
-                          searchHandler: _runFilter,
-                          resetHandler: _loadAll,
-                        ),
-                      );
-                    });
+                showDialogBoxFilter();
               },
             ),
           ),

@@ -5,7 +5,7 @@ import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lvl1_gridScreenLanding.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/favourites.dart';
 
-void main() {
+void main(){
   runApp(MyApp());
 }
 
