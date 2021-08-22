@@ -1,15 +1,14 @@
-// Lv2FruitDetails( int i ){
-
-//   // put your state less or staeful widget here
-//   // also use provider
-// }
+import 'dart:convert';
 
 import "package:flutter/material.dart";
+import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_NutritionDialog.dart';
 
 import 'package:provider/provider.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 
 import 'dart:math';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Lv2FruitDetails extends StatefulWidget {
   final int a;
@@ -23,8 +22,54 @@ class Lv2FruitDetails extends StatefulWidget {
 
 class _Lv2FruitDetails extends State<Lv2FruitDetails> {
   int id;
+  List<String> favListJSON = [];
+  List<String> idsList = [];
+  List<Map<String, dynamic>> favListFinal = [];
+  SharedPreferences sharedPreferences;
 
   _Lv2FruitDetails({this.id});
+
+  @override
+  void initState() {
+    // initiSharedPreferences();
+    // SharedPreferences.setMockInitialValues({
+    //   "favourites" : ['1']
+    // });
+
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      sharedPreferences = sp;
+      loadData();
+    });
+    super.initState();
+  }
+
+  initiSharedPreferences() {
+    // SharedPreferences.setMockInitialValues({
+    //   "favourites" : ['1']
+    // });
+  }
+
+  void loadData() {
+    // favListJSON = sharedPreferences.getStringList('favourites');
+    // if (favListJSON != null) {
+    //   favListJSON.forEach((element) {
+    //     Map<String, dynamic> fav = jsonDecode(element);
+    //     favListFinal.add(fav);
+    //   });
+    // }
+    // print(favListFinal);
+    if (sharedPreferences != null) {
+      idsList = sharedPreferences.getStringList('favourites');
+      print(idsList);
+    }
+  }
+
+  void storeData(String id) {
+    idsList.add(id);
+    // print(idsList);
+    sharedPreferences.setStringList('favourites', idsList);
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +89,10 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
             ListView(
               children: <Widget>[
                 CurvedShape(
-                    ht: curveHeight, imgUrl: fruitsdisplaydata[id]['imgUrl'], color: fruitsdisplaydata[id]['color1'],),
+                  ht: curveHeight,
+                  imgUrl: fruitsdisplaydata[id]['imgUrl'],
+                  color: fruitsdisplaydata[id]['color1'],
+                ),
                 Container(
                   //transform here is to move the title upwards
                   transform: Matrix4.translationValues(0.0, -20.0, 0.0),
@@ -72,7 +120,9 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                     ),
                   ),
                 ),
-                SizedBox(height: 70,)
+                SizedBox(
+                  height: 70,
+                )
               ],
             ),
             //the navigation bar
@@ -86,79 +136,59 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                   children: [
                     CustomPaint(
                       size: Size(size.width, 80),
-                      painter: BNBCustomPainter(color: fruitsdisplaydata[id]['color1']),
+                      painter: BNBCustomPainter(
+                        // color: fruitsdisplaydata[id]['color1']
+                        color: Colors.white,
+                      ),
+                    ),
+                    Center(
+                      heightFactor: 0.6,
+                      child: FloatingActionButton(
+                          backgroundColor: Colors.orange,
+                          child: Icon(Icons.quiz_sharp),
+                          elevation: 0.1,
+                          onPressed: () {}),
                     ),
                     Container(
                       width: size.width,
                       height: 80,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           IconButton(
-                              disabledColor: Colors.green,
-                              icon: Icon(
-                                Icons.arrow_back,
-                                size: 32.0,
-                              ),
-                              onPressed: () {
-                                if (id == 0) {
-                                  return null;
-                                }
-                                // setState(() {
-                                //   id = id - 1;
-                                // });
-                                //adding navigator push to proceed to next page. this is to introduce page transition effects
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            Lv2FruitDetails(id - 1)));
-                              }),
-                          IconButton(
-                            disabledColor: Colors.grey,
                             icon: Icon(
-                              Icons.arrow_forward,
-                              size: 32.0,
+                              Icons.star_border_outlined,
+                              color: Colors.grey.shade400,
                             ),
                             onPressed: () {
-                              if (id == fruitsdisplaydata.length - 1) {
-                                return null;
-                              }
-                              // setState((){
-                              //   id = id + 1;
-                              // });
-
-                              //adding navigator push to proceed to next page. this is to introduce page transition effects
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Lv2FruitDetails(id + 1),
-                                ),
-                              );
-                              // Navigator.push(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     transitionDuration: Duration(milliseconds: 1000),
-                              //     transitionsBuilder: (BuildContext context,
-                              //         Animation<double> animation,
-                              //         Animation<double> secondaryAnimation,
-                              //         Widget child) {
-                              //           animation = CurvedAnimation(parent: animation, curve: Curves.easeIn);
-                              //       return ScaleTransition(
-                              //         alignment: Alignment.center,
-                              //         scale: animation,
-                              //         child: child,
-                              //       );
-                              //     },
-                              //     pageBuilder: (BuildContext context,
-                              //         Animation<double> animation,
-                              //         Animation<double> secondaryAnimation) {
-                              //       return Lv2FruitDetails(id + 1);
-                              //     },
-                              //   ),
-                              // );
+                              storeData(fruitsdisplaydata[id]['id']);
+                            },
+                            splashColor: Colors.white,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.health_and_safety_outlined,
+                              color: Colors.grey.shade400,
+                            ),
+                            onPressed: (){
+                              NutritionDialog(fruit : fruitsdisplaydata[id]);
                             },
                           ),
+                          Container(
+                            width: size.width * 0.20,
+                          ),
+                          IconButton(
+                              icon: Icon(
+                                Icons.description_outlined,
+                                color: Colors.grey.shade400,
+                              ),
+                              onPressed: null),
+                          IconButton(
+                              icon: Icon(
+                                Icons.photo_camera_back_outlined,
+                                color: Colors.grey.shade400,
+                              ),
+                              onPressed: null),
                         ],
                       ),
                     )
@@ -194,7 +224,7 @@ class CurvedShape extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/'+imgUrl),
+                  image: AssetImage('assets/' + imgUrl),
                   fit: BoxFit.scaleDown,
                 ),
               ),
@@ -227,9 +257,9 @@ class CurvedShape extends StatelessWidget {
 }
 
 class _MyPainter extends CustomPainter {
- final Color color;
+  final Color color;
 
- _MyPainter({this.color});
+  _MyPainter({this.color});
 
   @override
   void paint(Canvas canvas, Size size) {

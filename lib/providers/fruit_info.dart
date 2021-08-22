@@ -45,7 +45,7 @@ class FruitsInfo with ChangeNotifier {
       'selenium': 0,
     },
     {
-      'id': '1',
+      'id': '2',
       'cmnName': 'Orange',
       'scfName': 'Malus domestica',
       'color1': Colors.red[100],
@@ -86,7 +86,7 @@ class FruitsInfo with ChangeNotifier {
       'selenium': 0,
     },
     {
-      'id': '1',
+      'id': '3',
       'cmnName': 'Pineapple',
       'scfName': 'Malus domestica',
       'color1': Colors.red[100],
@@ -127,7 +127,7 @@ class FruitsInfo with ChangeNotifier {
       'selenium': 0,
     },
     {
-      'id': '1',
+      'id': '4',
       'cmnName': 'Mango',
       'scfName': 'Malus domestica',
       'color1': Colors.red[100],
@@ -168,7 +168,7 @@ class FruitsInfo with ChangeNotifier {
       'selenium': 0,
     },
     {
-      'id': '1',
+      'id': '5',
       'cmnName': 'Jackfruit',
       'scfName': 'Malus domestica',
       'color1': Colors.red[100],
@@ -243,5 +243,4 @@ class FruitsInfo with ChangeNotifier {
 
   String get getSearchString => _searchString;
 
-  
 }
