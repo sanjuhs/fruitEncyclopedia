@@ -54,37 +54,8 @@ class _FilterDialogState extends State<FilterDialog> {
                     ),
                   ),
 
-                ),
-                Text('Sort By Alphabet:'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          // Provider.of<FruitsInfo>(context).sortFruits(true);
-                          widget.sortHandler(true);
-                        },
-                        child: Text('A-Z')),
-                    ElevatedButton(
-                        onPressed: () {
-                          widget.sortHandler(false);
-                        },
-                        child: Text('Z-A')),
-                  ],
-                ),
-                TextField(
-                  controller: _controller1,
-                  onChanged: (value) => widget.searchHandler(value),
-                  decoration: InputDecoration(
-                      labelText: 'Search', suffixIcon: Icon(Icons.search)),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    fruitsData.loadAllFruits;
-                  },
-                  child: Text('Load All Fruits'),
-                )
-              ],
+                
+                
 
                   Text('Sort By Alphabet:'),
                   Row(
