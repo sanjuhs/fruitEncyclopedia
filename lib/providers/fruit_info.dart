@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FruitsInfo with ChangeNotifier {
+
   List<Map<String, dynamic>> _fruitsNew = [
     {
       'id': '1',
@@ -221,12 +222,14 @@ class FruitsInfo with ChangeNotifier {
   }
 
   void searchFruitsProvider(String keyword) {
+    print(_searchString);
     _searchString = keyword;
     notifyListeners();
   }
 
   void loadAllFruits(){
-    _searchString = '';
+    print(_searchString);
+    _searchString = "";
     notifyListeners();
   }
 

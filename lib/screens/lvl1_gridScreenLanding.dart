@@ -122,6 +122,10 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
       if (keyword.isEmpty) {
         setState(() {
           fruitsData.searchFruitsProvider('');
+
+          //fruitsdisplaydata = fruitsData.fruitsListNew;
+          //fruitsData.searchFruitsProvider(keyword);
+
         });
       } else {
         setState(() {
@@ -133,6 +137,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     void _loadAll() {
       fruitsData.searchFruitsProvider('');
     }
+
 
     void showDialogBoxFilter() async {
       var data = await showDialog(

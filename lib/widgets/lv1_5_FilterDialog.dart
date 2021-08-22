@@ -17,13 +17,13 @@ class _FilterDialogState extends State<FilterDialog> {
     Size size = MediaQuery.of(context).size;
 
     var fruitsData = Provider.of<FruitsInfo>(context);
-    var fruitsdisplaydata = fruitsData.fruitsListNew;
+    //var fruitsdisplaydata = fruitsData.fruitsListNew;
 
     var searchString = fruitsData.getSearchString;
 
     print('rebuilding filter dialog');
     print(searchString);
-
+    print("hello world");
     TextEditingController _controller1 = TextEditingController();
     _controller1.text = searchString;
 
@@ -53,6 +53,39 @@ class _FilterDialogState extends State<FilterDialog> {
                       },
                     ),
                   ),
+
+                ),
+                Text('Sort By Alphabet:'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          // Provider.of<FruitsInfo>(context).sortFruits(true);
+                          widget.sortHandler(true);
+                        },
+                        child: Text('A-Z')),
+                    ElevatedButton(
+                        onPressed: () {
+                          widget.sortHandler(false);
+                        },
+                        child: Text('Z-A')),
+                  ],
+                ),
+                TextField(
+                  controller: _controller1,
+                  onChanged: (value) => widget.searchHandler(value),
+                  decoration: InputDecoration(
+                      labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    fruitsData.loadAllFruits;
+                  },
+                  child: Text('Load All Fruits'),
+                )
+              ],
+
                   Text('Sort By Alphabet:'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,6 +115,7 @@ class _FilterDialogState extends State<FilterDialog> {
                   )
                 ],
               ),
+
             ),
           ),
         ),
