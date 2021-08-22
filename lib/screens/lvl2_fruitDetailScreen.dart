@@ -11,7 +11,7 @@ import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Lv2FruitDetails extends StatefulWidget {
-  final int a;
+  final String a;
   Lv2FruitDetails(this.a);
 
   @override
@@ -21,9 +21,9 @@ class Lv2FruitDetails extends StatefulWidget {
 }
 
 class _Lv2FruitDetails extends State<Lv2FruitDetails> {
-  int id;
+  String id;
   List<String> favListJSON = [];
-  List<String> idsList = ["1","2"];
+  List<String> idsList = [];
   List<Map<String, dynamic>> favListFinal = [];
   SharedPreferences sharedPreferences;
 
@@ -59,12 +59,16 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     // }
     // print(favListFinal);
     if (sharedPreferences != null) {
-      List <String> df;
+      List<String> df;
       df = sharedPreferences.getStringList('favourites');
-      if(df.length!=0){
-        print("sd !");
-        idsList =df;
-      }
+
+      setState(() {
+        if (df.length != 0) {
+          print("sd !");
+          idsList = df;
+        }
+      });
+
       print("id list to be shown below :");
       print(idsList);
       print("df below");
@@ -75,10 +79,33 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
 
   void storeData(String id) {
     print("adding below");
-    idsList.add(id);
+    //flag to check if fruit exists
+    bool flag = true;
+    //if fruit exists then remove from favourites and return
+
+    setState(() {
+      if (idsList.contains(id)) {
+        idsList.remove(id);
+        flag = false;
+      } else {
+        idsList.add(id);
+      }
+    });
+
     print("hopefully no error above");
     // print(idsList);
     sharedPreferences.setStringList('favourites', idsList);
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return flag
+              ? AlertDialog(
+                  content: Text('Added to Favourites !'),
+                )
+              : AlertDialog(
+                  content: Text('Deleted from Favourites !'),
+                );
+        });
     loadData();
   }
 
@@ -91,24 +118,28 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     final fruitsData = Provider.of<FruitsInfo>(context);
     final fruitsdisplaydata = fruitsData.fruitsListNew;
 
+
+    final fruitTobeDisplayed = fruitsdisplaydata.firstWhere((element) => element['id'] == id);
+
+
     return ChangeNotifierProvider(
       create: (ctx) => FruitsInfo(),
       child: Scaffold(
-        backgroundColor: Colors.white, //fruitsdisplaydata[id].color1,
+        backgroundColor: Colors.white, //fruitTobeDisplayed.color1,
         body: Stack(
           children: [
             ListView(
               children: <Widget>[
                 CurvedShape(
                   ht: curveHeight,
-                  imgUrl: fruitsdisplaydata[id]['imgUrl'],
-                  color: fruitsdisplaydata[id]['color1'],
+                  imgUrl: fruitTobeDisplayed['imgUrl'],
+                  color: fruitTobeDisplayed['color1'],
                 ),
                 Container(
                   //transform here is to move the title upwards
                   transform: Matrix4.translationValues(0.0, -20.0, 0.0),
                   child: Text(
-                    fruitsdisplaydata[id]['cmnName'],
+                    fruitTobeDisplayed['cmnName'],
                     textDirection: TextDirection.ltr,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -122,7 +153,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                   child: Center(
                     child: RichText(
                       text: TextSpan(
-                        text: fruitsdisplaydata[id]['description'],
+                        text: fruitTobeDisplayed['description'],
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -148,7 +179,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                     CustomPaint(
                       size: Size(size.width, 80),
                       painter: BNBCustomPainter(
-                        // color: fruitsdisplaydata[id]['color1']
+                        // color: fruitTobeDisplayed['color1']
                         color: Colors.white,
                       ),
                     ),
@@ -166,23 +197,35 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.star_border_outlined,
-                              color: Colors.grey.shade400,
-                            ),
-                            onPressed: () {
-                              storeData(fruitsdisplaydata[id]['id']);
-                            },
-                            splashColor: Colors.white,
-                          ),
+                          //if fruit not there in the list then show outlined star
+                          !idsList.contains(fruitTobeDisplayed['id'])
+                              ? IconButton(
+                                  icon: Icon(
+                                    Icons.star_border_outlined,
+                                    color: Colors.grey.shade400,
+                                  ),
+                                  onPressed: () {
+                                    storeData(fruitTobeDisplayed['id']);
+                                  },
+                                  splashColor: Colors.white,
+                                )
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: Colors.red,
+                                  ),
+                                  onPressed: () {
+                                    storeData(fruitTobeDisplayed['id']);
+                                  },
+                                  splashColor: Colors.white,
+                                ),
                           IconButton(
                             icon: Icon(
                               Icons.health_and_safety_outlined,
                               color: Colors.grey.shade400,
                             ),
-                            onPressed: (){
-                              NutritionDialog(fruit : fruitsdisplaydata[id]);
+                            onPressed: () {
+                              NutritionDialog(fruit: fruitTobeDisplayed);
                             },
                           ),
                           Container(
@@ -235,7 +278,7 @@ class CurvedShape extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/' + imgUrl),
+                  image: AssetImage('' + imgUrl),
                   fit: BoxFit.scaleDown,
                 ),
               ),

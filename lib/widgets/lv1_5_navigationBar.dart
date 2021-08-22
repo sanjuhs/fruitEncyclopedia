@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lv2_favourites.dart';
+import 'package:myapp8_fruit_encyclopedia/screens/lv2_quiz.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lv2_stickers.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lvl1_gridScreenLanding.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lv1_5_FilterDialog.dart';
@@ -28,7 +29,14 @@ class BottomNavbar extends StatelessWidget {
                   backgroundColor: Colors.orange,
                   child: Icon(Icons.quiz_sharp),
                   elevation: 0.1,
-                  onPressed: () {}),
+                  onPressed: () {
+                     Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Lv2_Quiz(),
+                        ),
+                      );
+                  }),
             ),
             Container(
               width: size.width,

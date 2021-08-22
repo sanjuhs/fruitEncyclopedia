@@ -187,7 +187,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
                 itemBuilder: (context, i) => GridCard(
                     fruitsdisplaydata[i]['cmnName'],
                     fruitsdisplaydata[i]['imgUrl'],
-                    i,
+                    fruitsdisplaydata[i]['id'],
                     fruitsdisplaydata[i]['color1']),
                 // Container(
                 //   child: Text(fruitsdisplaydata[i].title),

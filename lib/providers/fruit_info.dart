@@ -222,13 +222,12 @@ class FruitsInfo with ChangeNotifier {
   }
 
   void searchFruitsProvider(String keyword) {
-    print(_searchString);
+
     _searchString = keyword;
     notifyListeners();
   }
 
   void loadAllFruits(){
-    print(_searchString);
     _searchString = "";
     notifyListeners();
   }
