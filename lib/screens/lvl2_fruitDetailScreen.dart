@@ -23,7 +23,7 @@ class Lv2FruitDetails extends StatefulWidget {
 class _Lv2FruitDetails extends State<Lv2FruitDetails> {
   int id;
   List<String> favListJSON = [];
-  List<String> idsList = [];
+  List<String> idsList = ["1","2"];
   List<Map<String, dynamic>> favListFinal = [];
   SharedPreferences sharedPreferences;
 
@@ -59,13 +59,24 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     // }
     // print(favListFinal);
     if (sharedPreferences != null) {
-      idsList = sharedPreferences.getStringList('favourites');
+      List <String> df;
+      df = sharedPreferences.getStringList('favourites');
+      if(df.length!=0){
+        print("sd !");
+        idsList =df;
+      }
+      print("id list to be shown below :");
       print(idsList);
+      print("df below");
+      print(df);
+      print("XXXXX");
     }
   }
 
   void storeData(String id) {
+    print("adding below");
     idsList.add(id);
+    print("hopefully no error above");
     // print(idsList);
     sharedPreferences.setStringList('favourites', idsList);
     loadData();
