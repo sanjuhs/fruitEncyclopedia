@@ -121,7 +121,8 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     void _runFilter(keyword) {
       if (keyword.isEmpty) {
         setState(() {
-          fruitsdisplaydata = fruitsData.fruitsListNew;
+          //fruitsdisplaydata = fruitsData.fruitsListNew;
+          //fruitsData.searchFruitsProvider(keyword);
         });
       } else {
         setState(() {
@@ -133,6 +134,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
     void _loadAll(){
       fruitsData.searchFruitsProvider('');
     }
+
 
     Size size = MediaQuery.of(context).size;
 
