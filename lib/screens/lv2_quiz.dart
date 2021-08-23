@@ -104,15 +104,12 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                       ),
                     ),
                   );
-                }
-                else{
+                } else {
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Lv3_WrongAnswer(
-                        
-                      ),
+                      builder: (context) => Lv3_WrongAnswer(),
                     ),
                   );
                 }
@@ -136,7 +133,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   //write to sharedpreferences
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
-                  
+
                   sharedPreferences.setStringList('quiz', yList);
                   print(sharedPreferences.getStringList('quiz'));
 
@@ -149,15 +146,12 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                       ),
                     ),
                   );
-                }
-               else{
+                } else {
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Lv3_WrongAnswer(
-                        
-                      ),
+                      builder: (context) => Lv3_WrongAnswer(),
                     ),
                   );
                 }
@@ -192,15 +186,12 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                       ),
                     ),
                   );
-                }
-               else{
+                } else {
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Lv3_WrongAnswer(
-                        
-                      ),
+                      builder: (context) => Lv3_WrongAnswer(),
                     ),
                   );
                 }
@@ -235,15 +226,12 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                       ),
                     ),
                   );
-                }
-              else{
+                } else {
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Lv3_WrongAnswer(
-                        
-                      ),
+                      builder: (context) => Lv3_WrongAnswer(),
                     ),
                   );
                 }
@@ -252,7 +240,18 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
           ),
           Padding(
             padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 50),
-            child: ElevatedButton(onPressed: null, child: Text('Show Hint')),
+            child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Hint'),
+                          content: Text(questionToLoad['hintText']),
+                        );
+                      });
+                },
+                child: Text('Show Hint')),
           ),
         ],
       ),

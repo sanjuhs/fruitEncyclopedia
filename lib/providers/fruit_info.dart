@@ -43,6 +43,7 @@ class FruitsInfo with ChangeNotifier {
       'manganese': 0.035,
       'copper': 0,
       'selenium': 0,
+      'treeURL' : 'images/f_01.webp',
     },
     {
       'id': '2',
@@ -84,6 +85,7 @@ class FruitsInfo with ChangeNotifier {
       'manganese': 0.035,
       'copper': 0,
       'selenium': 0,
+      'treeURL' : 'images/f_01.webp',
     },
     {
       'id': '3',
@@ -125,6 +127,7 @@ class FruitsInfo with ChangeNotifier {
       'manganese': 0.035,
       'copper': 0,
       'selenium': 0,
+      'treeURL' : 'images/f_01.webp',
     },
     {
       'id': '4',
@@ -166,6 +169,7 @@ class FruitsInfo with ChangeNotifier {
       'manganese': 0.035,
       'copper': 0,
       'selenium': 0,
+      'treeURL' : 'images/f_01.webp',
     },
     {
       'id': '5',
@@ -207,6 +211,7 @@ class FruitsInfo with ChangeNotifier {
       'manganese': 0.035,
       'copper': 0,
       'selenium': 0,
+      'treeURL' : 'images/f_01.webp',
     }
   ];
 

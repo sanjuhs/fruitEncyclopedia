@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import "package:flutter/material.dart";
+import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_DetailsDialog.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_NutritionDialog.dart';
+import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_TreeDialog.dart';
 
 import 'package:provider/provider.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
@@ -63,7 +65,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
       df = sharedPreferences.getStringList('favourites');
 
       setState(() {
-        if (df.length != 0) {
+        if (df != null) {
           print("sd !");
           idsList = df;
         }
@@ -177,7 +179,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                 child: Stack(
                   children: [
                     CustomPaint(
-                      size: Size(size.width, 80),
+                      size: Size(size.width, 12.5*size.height),
                       painter: BNBCustomPainter(
                         // color: fruitTobeDisplayed['color1']
                         color: Colors.white,
@@ -225,7 +227,15 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                               color: Colors.grey.shade400,
                             ),
                             onPressed: () {
-                              NutritionDialog(fruit: fruitTobeDisplayed);
+                              showGeneralDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+                                barrierColor: Colors.black45,
+                                transitionDuration: Duration(milliseconds : 200),
+                                pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation){
+                                  return NutritionDialog(fruit: fruitTobeDisplayed);
+                                });
                             },
                           ),
                           Container(
@@ -236,13 +246,33 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 Icons.description_outlined,
                                 color: Colors.grey.shade400,
                               ),
-                              onPressed: null),
+                              onPressed: () {
+                              showGeneralDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+                                barrierColor: Colors.black45,
+                                transitionDuration: Duration(milliseconds : 200),
+                                pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation){
+                                  return DetailsDialog(fruit: fruitTobeDisplayed);
+                                });
+                            },),
                           IconButton(
                               icon: Icon(
                                 Icons.photo_camera_back_outlined,
                                 color: Colors.grey.shade400,
                               ),
-                              onPressed: null),
+                               onPressed: () {
+                              showGeneralDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+                                barrierColor: Colors.black45,
+                                transitionDuration: Duration(milliseconds : 200),
+                                pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation){
+                                  return TreeDialog(fruit: fruitTobeDisplayed);
+                                });
+                            },),
                         ],
                       ),
                     )
