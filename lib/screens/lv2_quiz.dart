@@ -17,7 +17,6 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
 
   @override
   void initState() {
-    print('testing.');
     SharedPreferences.getInstance().then((SharedPreferences sp) {
       sharedPreferences = sp;
       loadData();
@@ -28,7 +27,6 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
   void loadData() {
     List<String> df = [];
     df = sharedPreferences.getStringList('quiz');
-    print(df);
     if (df.length != 0) {
       var i = 0;
       for (i = 0; i < df.length; i++) {
@@ -46,15 +44,24 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
   Widget build(BuildContext context) {
     final quizQuestions = Provider.of<Quiz>(context);
     final quizQuestionsList = quizQuestions.quizQuestionsList;
-    print(quizQuestionsList);
 
     var questionToLoad = quizQuestionsList[index];
-    print(questionToLoad);
 
     return Scaffold(
       body: ListView(
         shrinkWrap: false,
         children: [
+           Container(
+            width: double.infinity,
+            height: 200,
+            margin: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(questionToLoad['imgURL']),
+                fit: BoxFit.scaleDown,
+              ),
+            ),
+          ),
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(left: 10, right: 10, top: 35),
@@ -64,17 +71,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
               textAlign: TextAlign.center,
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: 400,
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(questionToLoad['imgURL']),
-                fit: BoxFit.scaleDown,
-              ),
-            ),
-          ),
+         
           Padding(
             padding: const EdgeInsets.only(left: 9.0, right: 9.0, top: 5.0),
             child: ElevatedButton(
@@ -92,7 +89,6 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   //write to sharedpreferences
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
-                  print(yList);
                   sharedPreferences.setStringList('quiz', yList);
 
                   //route to next screen
@@ -135,7 +131,6 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   yList[index] = 'n';
 
                   sharedPreferences.setStringList('quiz', yList);
-                  print(sharedPreferences.getStringList('quiz'));
 
                   //route to next screen
                   Navigator.pushReplacement(
