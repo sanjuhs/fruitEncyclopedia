@@ -54,35 +54,24 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
   }
 
   void loadData() {
-    // favListJSON = sharedPreferences.getStringList('favourites');
-    // if (favListJSON != null) {
-    //   favListJSON.forEach((element) {
-    //     Map<String, dynamic> fav = jsonDecode(element);
-    //     favListFinal.add(fav);
-    //   });
-    // }
-    // print(favListFinal);
     if (sharedPreferences != null) {
       List<String> df;
       df = sharedPreferences.getStringList('favourites');
 
       setState(() {
         if (df != null) {
-          print("sd !");
           idsList = df;
         }
       });
-
-      print("id list to be shown below :");
-      print(idsList);
-      print("df below");
-      print(df);
-      print("XXXXX");
+      // print("id list to be shown below :");
+      // print(idsList);
+      // print("df below");
+      // print(df);
+      // print("XXXXX");
     }
   }
 
   void storeData(String id) {
-    print("adding below");
     //flag to check if fruit exists
     bool flag = true;
     //if fruit exists then remove from favourites and return
@@ -96,7 +85,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
       }
     });
 
-    print("hopefully no error above");
+   
     // print(idsList);
     sharedPreferences.setStringList('favourites', idsList);
     showDialog(
@@ -134,7 +123,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
             if (details.delta.dx < 0) {
               int newId;
               if (int.parse(id) < fruitsdisplaydata.length) {
-                print('swiping right ..');
+                // print('swiping right ..');
                 newId = int.parse(id) + 1;
               } else {
                 newId = 1;
@@ -153,7 +142,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
               } else {
                 newId = fruitsdisplaydata.length;
               }
-              print('swiping left ..');
+              // print('swiping left ..');
               Navigator.pushReplacement(
                 context,
                 CustomPageRoute(

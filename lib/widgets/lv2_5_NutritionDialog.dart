@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 
 class NutritionDialog extends StatefulWidget {
   Map fruit;
@@ -13,6 +10,7 @@ class NutritionDialog extends StatefulWidget {
 }
 
 class _NutritionDialogState extends State<NutritionDialog> {
+  double lineHeight = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,48 +43,148 @@ class _NutritionDialogState extends State<NutritionDialog> {
                   ),
                 ),
                 Container(
-                   transform: Matrix4.translationValues(0.0, -25.0, 0.0),
+                  transform: Matrix4.translationValues(0.0, -25.0, 0.0),
                   decoration: BoxDecoration(
-                    // color: Colors.yellow,
-                  ),
+                      // color: Colors.yellow,
+                      ),
                   padding: EdgeInsets.only(top: 0, left: 0, right: 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Calories : ${widget.fruit['calories']} kcal", textAlign: TextAlign.left,),
-                      Text("Carbohydrates : ${widget.fruit['carb']} g"),
-                      Text("Sugar : ${widget.fruit['sugar']} g"),
-                      Text("Fiber : ${widget.fruit['fiber']} g"),
-                      Text("Fat : ${widget.fruit['fat']} g"),
-                      Text("Protein : ${widget.fruit['protein']} g"),
-                      Text("Water : ${widget.fruit['water']} g"),
-                      Text("Vitamin A : ${widget.fruit['vitA']} mg"),
-                      Text("Vitamin B1 : ${widget.fruit['vitB1']} mg"),
-                      Text("Vitabin B2 : ${widget.fruit['vitB2']} mg"),
-                      Text("Vitamin B3 : ${widget.fruit['vitB3']} mg"),
-                      Text("Vitamin B5 : ${widget.fruit['vitB5']} mg"),
-                      Text("Vitamin B6 : ${widget.fruit['vitB6']} mg"),
-                      Text("Vitamin B7 : ${widget.fruit['vitB7']} mg"),
-                      Text("Vitamin B9 : ${widget.fruit['vitB9']} mg"),
-                      Text("Vitamin B12 : ${widget.fruit['vitB12']} mg"),
-                      Text("Vitamin C : ${widget.fruit['vitC']} mg"),
-                      Text("Vitamin D : ${widget.fruit['vitD']} mg"),
-                      Text("Sugar : ${widget.fruit['sugar']} mg"),
-                      Text("Vitamin E : ${widget.fruit['vitE']} mg"),
-                      Text("Vitamin K : ${widget.fruit['vitK']} mg"),
-                      Text("Choline : ${widget.fruit['choline']} mg"),
-                      Text("Potassium : ${widget.fruit['potassium']} mg"),
-                      Text("Chlorine : ${widget.fruit['chlorine']} mg"),
-                      Text("Sodium : ${widget.fruit['sodium']} mg"),
-                      Text("Calcium : ${widget.fruit['calcium']} mg"),
-                      Text("Phosphorus : ${widget.fruit['phosphorus']} mg"),
-                      Text("Magnesium : ${widget.fruit['magnesium']} mg"),
-                      Text("Iron : ${widget.fruit['iron']} mg"),
-                      Text("Zinc : ${widget.fruit['zinc']} mg"),
-                      Text("Manganese : ${widget.fruit['manganese']} mg"),
-                      Text("Copper : ${widget.fruit['copper']} mg"),
-                      Text("Selenium : ${widget.fruit['selenium']} mg"),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Calories : ${widget.fruit['calories']} kcal",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Carbohydratess : ${widget.fruit['carb']} g",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Sugar : ${widget.fruit['sugar']} g",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Fiber : ${widget.fruit['fiber']} g",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Fat : ${widget.fruit['fat']} g",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Protein : ${widget.fruit['protein']} g",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Water : ${widget.fruit['water']} g",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin A : ${widget.fruit['vitA']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B1 : ${widget.fruit['vitB1']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitabin B2 : ${widget.fruit['vitB2']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B3 : ${widget.fruit['vitB3']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B5 : ${widget.fruit['vitB5']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B6 : ${widget.fruit['vitB6']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B7 : ${widget.fruit['vitB7']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B9 : ${widget.fruit['vitB9']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin B12 : ${widget.fruit['vitB12']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin C : ${widget.fruit['vitC']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin D : ${widget.fruit['vitD']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Sugar : ${widget.fruit['sugar']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin E : ${widget.fruit['vitE']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Vitamin K : ${widget.fruit['vitK']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Choline : ${widget.fruit['choline']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Potassium : ${widget.fruit['potassium']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Chlorine : ${widget.fruit['chlorine']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Sodium : ${widget.fruit['sodium']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Calcium : ${widget.fruit['calcium']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Phosphorus : ${widget.fruit['phosphorus']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Magnesium : ${widget.fruit['magnesium']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Iron : ${widget.fruit['iron']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Zinc : ${widget.fruit['zinc']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Manganese : ${widget.fruit['manganese']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Copper : ${widget.fruit['copper']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                        Text(
+                          "Selenium : ${widget.fruit['selenium']} mg",
+                          style: TextStyle(height: lineHeight),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
