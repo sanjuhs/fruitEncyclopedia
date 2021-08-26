@@ -27,7 +27,9 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
   void loadData() {
     List<String> df = [];
     df = sharedPreferences.getStringList('quiz');
-    if (df.length != 0) {
+    print("yoloooo");
+    if (df != null) {
+      print("hilooooo");
       print(df);
       var i = 0;
       for (i = 0; i < df.length; i++) {
@@ -58,7 +60,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/'+questionToLoad['imgURL']),
+                image: AssetImage('assets/images/'+questionToLoad['imgURL']),
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -85,11 +87,14 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
               ),
               child: Text(questionToLoad['option1']),
               onPressed: () {
+                print("benn presss");
                 if (questionToLoad['option1'].toLowerCase() ==
                     questionToLoad['answerText'].toLowerCase()) {
                   //write to sharedpreferences
+                  print("if is triggers");
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
+                  print(yList);
                   sharedPreferences.setStringList('quiz', yList);
 
                   //route to next screen
@@ -102,6 +107,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                     ),
                   );
                 } else {
+                  print("else is triggers");
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
@@ -171,7 +177,9 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   //write to sharedpreferences
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
-                  sharedPreferences.setStringList('favourites', yList);
+                  print(yList);
+                  sharedPreferences.setStringList('quiz', yList);
+                  //print(sharedPreferences.getStringList('favourites'));
 
                   //route to next screen
                   Navigator.pushReplacement(
@@ -211,7 +219,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   //write to sharedpreferences
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
-                  sharedPreferences.setStringList('favourites', yList);
+                  sharedPreferences.setStringList('quiz', yList);
 
                   //route to next screen
                   Navigator.pushReplacement(

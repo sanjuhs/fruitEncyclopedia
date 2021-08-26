@@ -176,18 +176,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
                     buildTopText(size),
                   ],
                 ),
-                itemBuilder: (context, i) => GridCard(
-                    fruitsdisplaydata[i]['cmnName'],
-                    fruitsdisplaydata[i]['imgUrl'],
-                    fruitsdisplaydata[i]['id'],
-                    fruitsdisplaydata[i]['color1']),
-                // Container(
-                //   child: Text(fruitsdisplaydata[i].title),
-                //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
-                //need to add widget above
-                itemCount: fruitsdisplaydata.length,
-                padding: const EdgeInsets.only(
-                    left: 10, right: 10, top: 0, bottom: 10.0),
+
                 // padding: const EdgeInsets.all(0),
                 GridView.builder(
                   shrinkWrap: true,
@@ -201,7 +190,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
                   itemBuilder: (context, i) => GridCard(
                       fruitsdisplaydata[i]['cmnName'],
                       fruitsdisplaydata[i]['imgUrl'],
-                      i,
+                      fruitsdisplaydata[i]['id'],
                       fruitsdisplaydata[i]['color1']),
                   // Container(
                   //   child: Text(fruitsdisplaydata[i].title),

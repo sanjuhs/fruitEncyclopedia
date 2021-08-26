@@ -8,21 +8,55 @@ import 'package:myapp8_fruit_encyclopedia/providers/favourites.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  SharedPreferences sharedPreferences;
+  // print("GOLOOO");
+  // SharedPreferences sharedPreferences;
+  
+  // SharedPreferences.getInstance().then((SharedPreferences sp) {
+  //   print("soloo");
+  //   sharedPreferences = sp;
+  //   List<String> qlist = [];
+  //   var i = 0;
+  //   for (i = 0; i <= 20; i++) {
+  //     qlist.add('y');
+  //   }
+  //   print(qlist);
+  //   print("XXXXXX");
+  //   sharedPreferences.setStringList('quiz', qlist);
+  //   print(sharedPreferences.getStringList('quiz'));
+  //   print("quiz is set");
+  // });
+  runApp(MyApp());
+}
 
+class MyApp extends StatefulWidget {
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+    void initState() {
+    print("GOLOOO");
+  SharedPreferences sharedPreferences;
+  
   SharedPreferences.getInstance().then((SharedPreferences sp) {
+    print("soloo");
     sharedPreferences = sp;
     List<String> qlist = [];
     var i = 0;
     for (i = 0; i <= 20; i++) {
       qlist.add('y');
     }
+    print(qlist);
+    print("XXXXXX");
     sharedPreferences.setStringList('quiz', qlist);
+    print(sharedPreferences.getStringList('quiz'));
+    print("quiz is set");
   });
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
