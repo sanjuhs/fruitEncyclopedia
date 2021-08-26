@@ -178,7 +178,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                     child: Center(
                       child: RichText(
                         text: TextSpan(
-                          text: fruitTobeDisplayed['description'],
+                          text: fruitTobeDisplayed['slDescription'],
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -359,7 +359,7 @@ class CurvedShape extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('' + imgUrl),
+                  image: AssetImage('images/' + imgUrl),
                   fit: BoxFit.scaleDown,
                 ),
               ),

@@ -37,7 +37,7 @@ class _FilterDialogState extends State<FilterDialog> {
             child: Container(
               width: size.width,
               height: 0.3 * size.height,
-              decoration: BoxDecoration(color: Colors.yellow),
+              decoration: BoxDecoration(color: Colors.white),
               child: Column(
                 children: [
                   SizedBox(
@@ -74,16 +74,6 @@ class _FilterDialogState extends State<FilterDialog> {
                           child: Text('Z-A')),
                     ],
                   ),
-                  TextField(
-                    controller: _controller1,
-                    onChanged: (value) => widget.searchHandler(value),
-                    decoration: InputDecoration(
-                        labelText: 'Search', suffixIcon: Icon(Icons.search)),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => widget.resetHandler(),
-                    child: Text('Load All Fruits'),
-                  )
                 ],
               ),
 

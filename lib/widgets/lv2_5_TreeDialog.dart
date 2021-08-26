@@ -47,19 +47,20 @@ class _TreeDialogState extends State<TreeDialog> {
                 Container(
                   transform: Matrix4.translationValues(0.0, -70.0, 0.0),
                   width: double.infinity,
-                  height: 0.6*size.height,
+                  height: 0.6 * size.height,
                   child: CustomPaint(
-                      child: Container(
-                    transform: Matrix4.translationValues(0.0, 80.0, 0.0),
-                    padding: EdgeInsets.all(20),
-                    margin: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(widget.fruit['treeURL']),
-                        fit: BoxFit.scaleDown,
+                    child: Container(
+                      transform: Matrix4.translationValues(0.0, 80.0, 0.0),
+                      padding: EdgeInsets.all(20),
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(widget.fruit['treeURL']),
+                          fit: BoxFit.scaleDown,
+                        ),
                       ),
                     ),
-                  )),
+                  ),
                 ),
               ],
             ),

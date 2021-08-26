@@ -112,22 +112,22 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen>  with SingleT
     }
 
     void showDialogBoxFilter() async {
-      var data = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return ChangeNotifierProvider(
-              create: (ctx) => FruitsInfo(),
-              child: FilterDialog(
-                sortHandler: _sortFruitsTrigger,
-                searchHandler: _runFilter,
-                resetHandler: _loadAll,
-              ),
-            );
-          });
-      print(data);
-      setState(() {
-        fruitsData.searchFruitsProvider(data);
-      });
+      // var data = await showDialog(
+      //     context: context,
+      //     builder: (BuildContext context) {
+      //       return ChangeNotifierProvider(
+      //         create: (ctx) => FruitsInfo(),
+      //         child: FilterDialog(
+      //           sortHandler: _sortFruitsTrigger,
+      //           searchHandler: _runFilter,
+      //           resetHandler: _loadAll,
+      //         ),
+      //       );
+      //     });
+      // print(data);
+      // setState(() {
+      //   fruitsData.searchFruitsProvider(data);
+      // });
     }
 
     return Scaffold(
