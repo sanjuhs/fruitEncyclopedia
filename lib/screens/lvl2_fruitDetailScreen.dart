@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import "package:flutter/material.dart";
+import 'package:myapp8_fruit_encyclopedia/screens/lv2_quiz.dart';
+import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_DetailsDialog.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_NutritionDialog.dart';
+import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_TreeDialog.dart';
+import 'package:myapp8_fruit_encyclopedia/widgets/lv2_5_customPageRoute.dart';
 
 import 'package:provider/provider.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
@@ -11,7 +15,7 @@ import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Lv2FruitDetails extends StatefulWidget {
-  final int a;
+  final String a;
   Lv2FruitDetails(this.a);
 
   @override
@@ -21,7 +25,7 @@ class Lv2FruitDetails extends StatefulWidget {
 }
 
 class _Lv2FruitDetails extends State<Lv2FruitDetails> {
-  int id;
+  String id;
   List<String> favListJSON = [];
   List<String> idsList = [];
   List<Map<String, dynamic>> favListFinal = [];
@@ -50,35 +54,51 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
   }
 
   void loadData() {
-    // favListJSON = sharedPreferences.getStringList('favourites');
-    // if (favListJSON != null) {
-    //   favListJSON.forEach((element) {
-    //     Map<String, dynamic> fav = jsonDecode(element);
-    //     favListFinal.add(fav);
-    //   });
-    // }
-    // print(favListFinal);
     if (sharedPreferences != null) {
-      List <String> df;
+      List<String> df;
       df = sharedPreferences.getStringList('favourites');
-      if(df.length!=0){
-        print("sd !");
-        idsList =df;
-      }
-      print("id list to be shown below :");
-      print(idsList);
-      print("df below");
-      print(df);
-      print("XXXXX");
+
+      setState(() {
+        if (df != null) {
+          idsList = df;
+        }
+      });
+      // print("id list to be shown below :");
+      // print(idsList);
+      // print("df below");
+      // print(df);
+      // print("XXXXX");
     }
   }
 
   void storeData(String id) {
-    print("adding below");
-    idsList.add(id);
-    print("hopefully no error above");
+    //flag to check if fruit exists
+    bool flag = true;
+    //if fruit exists then remove from favourites and return
+
+    setState(() {
+      if (idsList.contains(id)) {
+        idsList.remove(id);
+        flag = false;
+      } else {
+        idsList.add(id);
+      }
+    });
+
+   
     // print(idsList);
     sharedPreferences.setStringList('favourites', idsList);
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return flag
+              ? AlertDialog(
+                  content: Text('Added to Favourites !'),
+                )
+              : AlertDialog(
+                  content: Text('Deleted from Favourites !'),
+                );
+        });
     loadData();
   }
 
@@ -91,123 +111,227 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     final fruitsData = Provider.of<FruitsInfo>(context);
     final fruitsdisplaydata = fruitsData.fruitsListNew;
 
+    final fruitTobeDisplayed =
+        fruitsdisplaydata.firstWhere((element) => element['id'] == id);
+
     return ChangeNotifierProvider(
       create: (ctx) => FruitsInfo(),
       child: Scaffold(
-        backgroundColor: Colors.white, //fruitsdisplaydata[id].color1,
-        body: Stack(
-          children: [
-            ListView(
-              children: <Widget>[
-                CurvedShape(
-                  ht: curveHeight,
-                  imgUrl: fruitsdisplaydata[id]['imgUrl'],
-                  color: fruitsdisplaydata[id]['color1'],
-                ),
-                Container(
-                  //transform here is to move the title upwards
-                  transform: Matrix4.translationValues(0.0, -20.0, 0.0),
-                  child: Text(
-                    fruitsdisplaydata[id]['cmnName'],
-                    textDirection: TextDirection.ltr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 32,
+        backgroundColor: Colors.white, //fruitTobeDisplayed.color1,
+        body: GestureDetector(
+          onPanUpdate: (details) {
+            if (details.delta.dx < 0) {
+              int newId;
+              if (int.parse(id) < fruitsdisplaydata.length) {
+                // print('swiping right ..');
+                newId = int.parse(id) + 1;
+              } else {
+                newId = 1;
+              }
+              Navigator.pushReplacement(
+                context,
+                CustomPageRoute(
+                    child: Lv2FruitDetails(newId.toString()),
+                    rightToLeft: true),
+              );
+            }
+            if (details.delta.dx > 0) {
+              int newId;
+              if (int.parse(id) > 1) {
+                newId = int.parse(id) - 1;
+              } else {
+                newId = fruitsdisplaydata.length;
+              }
+              // print('swiping left ..');
+              Navigator.pushReplacement(
+                context,
+                CustomPageRoute(
+                    child: Lv2FruitDetails(newId.toString()),
+                    rightToLeft: false),
+              );
+            }
+          },
+          child: Stack(
+            children: [
+              ListView(
+                children: <Widget>[
+                  CurvedShape(
+                    ht: curveHeight,
+                    imgUrl: fruitTobeDisplayed['imgUrl'],
+                    color: fruitTobeDisplayed['color1'],
+                  ),
+                  Container(
+                    //transform here is to move the title upwards
+                    transform: Matrix4.translationValues(0.0, -20.0, 0.0),
+                    child: Text(
+                      fruitTobeDisplayed['cmnName'],
+                      textDirection: TextDirection.ltr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 32,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 40),
-                  child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                        text: fruitsdisplaydata[id]['description'],
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: 25, right: 25, top: 20, bottom: 40),
+                    child: Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: fruitTobeDisplayed['description'],
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 70,
-                )
-              ],
-            ),
-            //the navigation bar
-            Positioned(
-              bottom: 0,
-              left: 0,
-              child: Container(
-                width: size.width,
-                height: 80,
-                child: Stack(
-                  children: [
-                    CustomPaint(
-                      size: Size(size.width, 80),
-                      painter: BNBCustomPainter(
-                        // color: fruitsdisplaydata[id]['color1']
-                        color: Colors.white,
+                  SizedBox(
+                    height: 70,
+                  )
+                ],
+              ),
+              //the navigation bar
+              Positioned(
+                bottom: 0,
+                left: 0,
+                child: Container(
+                  width: size.width,
+                  height: 80,
+                  child: Stack(
+                    children: [
+                      CustomPaint(
+                        size: Size(size.width, 12.5 * size.height),
+                        painter: BNBCustomPainter(
+                          // color: fruitTobeDisplayed['color1']
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    Center(
-                      heightFactor: 0.6,
-                      child: FloatingActionButton(
-                          backgroundColor: Colors.orange,
-                          child: Icon(Icons.quiz_sharp),
-                          elevation: 0.1,
-                          onPressed: () {}),
-                    ),
-                    Container(
-                      width: size.width,
-                      height: 80,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.star_border_outlined,
-                              color: Colors.grey.shade400,
-                            ),
+                      Center(
+                        heightFactor: 0.6,
+                        child: FloatingActionButton(
+                            backgroundColor: Colors.orange,
+                            child: Icon(Icons.quiz_sharp),
+                            elevation: 0.1,
                             onPressed: () {
-                              storeData(fruitsdisplaydata[id]['id']);
-                            },
-                            splashColor: Colors.white,
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.health_and_safety_outlined,
-                              color: Colors.grey.shade400,
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Lv2_Quiz(),
+                                ),
+                              );
+                            }),
+                      ),
+                      Container(
+                        width: size.width,
+                        height: 80,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            //if fruit not there in the list then show outlined star
+                            !idsList.contains(fruitTobeDisplayed['id'])
+                                ? IconButton(
+                                    icon: Icon(
+                                      Icons.star_border_outlined,
+                                      color: Colors.grey.shade400,
+                                    ),
+                                    onPressed: () {
+                                      storeData(fruitTobeDisplayed['id']);
+                                    },
+                                    splashColor: Colors.white,
+                                  )
+                                : IconButton(
+                                    icon: Icon(
+                                      Icons.star,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: () {
+                                      storeData(fruitTobeDisplayed['id']);
+                                    },
+                                    splashColor: Colors.white,
+                                  ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.health_and_safety_outlined,
+                                color: Colors.grey.shade400,
+                              ),
+                              onPressed: () {
+                                showGeneralDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    barrierLabel:
+                                        MaterialLocalizations.of(context)
+                                            .modalBarrierDismissLabel,
+                                    barrierColor: Colors.black45,
+                                    transitionDuration:
+                                        Duration(milliseconds: 200),
+                                    pageBuilder: (BuildContext context,
+                                        Animation animation,
+                                        Animation secondaryAnimation) {
+                                      return NutritionDialog(
+                                          fruit: fruitTobeDisplayed);
+                                    });
+                              },
                             ),
-                            onPressed: (){
-                              NutritionDialog(fruit : fruitsdisplaydata[id]);
-                            },
-                          ),
-                          Container(
-                            width: size.width * 0.20,
-                          ),
-                          IconButton(
+                            Container(
+                              width: size.width * 0.20,
+                            ),
+                            IconButton(
                               icon: Icon(
                                 Icons.description_outlined,
                                 color: Colors.grey.shade400,
                               ),
-                              onPressed: null),
-                          IconButton(
+                              onPressed: () {
+                                showGeneralDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    barrierLabel:
+                                        MaterialLocalizations.of(context)
+                                            .modalBarrierDismissLabel,
+                                    barrierColor: Colors.black45,
+                                    transitionDuration:
+                                        Duration(milliseconds: 200),
+                                    pageBuilder: (BuildContext context,
+                                        Animation animation,
+                                        Animation secondaryAnimation) {
+                                      return DetailsDialog(
+                                          fruit: fruitTobeDisplayed);
+                                    });
+                              },
+                            ),
+                            IconButton(
                               icon: Icon(
                                 Icons.photo_camera_back_outlined,
                                 color: Colors.grey.shade400,
                               ),
-                              onPressed: null),
-                        ],
-                      ),
-                    )
-                  ],
+                              onPressed: () {
+                                showGeneralDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    barrierLabel:
+                                        MaterialLocalizations.of(context)
+                                            .modalBarrierDismissLabel,
+                                    barrierColor: Colors.black45,
+                                    transitionDuration:
+                                        Duration(milliseconds: 200),
+                                    pageBuilder: (BuildContext context,
+                                        Animation animation,
+                                        Animation secondaryAnimation) {
+                                      return TreeDialog(
+                                          fruit: fruitTobeDisplayed);
+                                    });
+                              },
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -235,7 +359,7 @@ class CurvedShape extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/' + imgUrl),
+                  image: AssetImage('' + imgUrl),
                   fit: BoxFit.scaleDown,
                 ),
               ),

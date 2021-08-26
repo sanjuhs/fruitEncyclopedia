@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:myapp8_fruit_encyclopedia/providers/quiz.dart';
 import 'package:provider/provider.dart';
 
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lvl1_gridScreenLanding.dart';
 import 'package:myapp8_fruit_encyclopedia/providers/favourites.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main(){
+void main() {
+  SharedPreferences sharedPreferences;
+
+  SharedPreferences.getInstance().then((SharedPreferences sp) {
+    sharedPreferences = sp;
+    List<String> qlist = [];
+    var i = 0;
+    for (i = 0; i <= 20; i++) {
+      qlist.add('y');
+    }
+    sharedPreferences.setStringList('quiz', qlist);
+  });
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -20,6 +34,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => Favourites(),
         ),
+        ChangeNotifierProvider(create: (ctx) => Quiz()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

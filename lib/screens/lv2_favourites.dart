@@ -15,31 +15,54 @@ class Lv2FavouritesScreen extends StatefulWidget {
   _Lv2FavouritesScreenState createState() => _Lv2FavouritesScreenState();
 }
 
-class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen> {
-  List<String> favListJSON = [];
+class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen>  with SingleTickerProviderStateMixin{
+  List<String> favListIds = [];
   List<Map<String, dynamic>> favListFinal = [];
   SharedPreferences sharedPreferences;
 
   @override
   void initState() {
-    initiSharedPreferences();
+    // initiSharedPreferences();
+    // SharedPreferences.setMockInitialValues({
+    //   "favourites" : ['1']
+    // });
+
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      sharedPreferences = sp;
+      loadData();
+    });
     super.initState();
   }
 
-  initiSharedPreferences() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    loadData();
+  initiSharedPreferences() {
+    // SharedPreferences.setMockInitialValues({
+    //   "favourites" : ['1']
+    // });
   }
 
   void loadData() {
-    favListJSON = sharedPreferences.getStringList('favourites');
-    if (favListJSON != null) {
-      favListJSON.forEach((element) {
-        Map<String, dynamic> fav = jsonDecode(element);
-        favListFinal.add(fav);
-      });
+    // favListJSON = sharedPreferences.getStringList('favourites');
+    // if (favListJSON != null) {
+    //   favListJSON.forEach((element) {
+    //     Map<String, dynamic> fav = jsonDecode(element);
+    //     favListFinal.add(fav);
+    //   });
+    // }
+    // print(favListFinal);
+    if (sharedPreferences != null) {
+      List<String> df;
+      df = sharedPreferences.getStringList('favourites');
+      if (df.length != 0) {
+        favListIds = df;
+      }
+      print("id list to be shown below and this is from favourites:");
+      print(favListIds);
+      print("df below");
+      print(df);
+      print("XXXXX");
     }
-    print(favListFinal);
+
+    setState((){});
   }
 
   @override
@@ -47,10 +70,22 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen> {
     var favouriteFruits = Provider.of<Favourites>(context);
     // var favouriteFruitsList = favouriteFruits.favouriteFruitsListProvider;
 
-    var favouriteFruitsList = favListFinal;
+    var favouriteFruitsList = [];
 
     var fruitsData = Provider.of<FruitsInfo>(context);
     var fruitsdisplaydata = fruitsData.fruitsListNew;
+
+   
+      //run a loop over ids got from sharedpreferences and map it to fruits
+      var i = 0, j = 0;
+      for (i = 0; i < favListIds.length; i++) {
+        for (j = 0; j < fruitsdisplaydata.length; j++) {
+          if (fruitsdisplaydata[j]['id'] == favListIds[i]) {
+            favouriteFruitsList.add(fruitsdisplaydata[j]);
+          }
+        }
+      }
+
 
     void _sortFruitsTrigger(bool alphabetically) {
       print('got the trigger');
@@ -70,6 +105,29 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen> {
           fruitsData.searchFruitsProvider(keyword);
         });
       }
+    }
+
+    void _loadAll() {
+      fruitsData.searchFruitsProvider('');
+    }
+
+    void showDialogBoxFilter() async {
+      var data = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ChangeNotifierProvider(
+              create: (ctx) => FruitsInfo(),
+              child: FilterDialog(
+                sortHandler: _sortFruitsTrigger,
+                searchHandler: _runFilter,
+                resetHandler: _loadAll,
+              ),
+            );
+          });
+      print(data);
+      setState(() {
+        fruitsData.searchFruitsProvider(data);
+      });
     }
 
     return Scaffold(
@@ -99,7 +157,7 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen> {
                 itemBuilder: (context, i) => GridCard(
                     favouriteFruitsList[i]['cmnName'],
                     favouriteFruitsList[i]['imgUrl'],
-                    i,
+                    favouriteFruitsList[i]['id'],
                     favouriteFruitsList[i]['color1']),
                 // Container(
                 //   child: Text(fruitsdisplaydata[i].title),
@@ -117,17 +175,7 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen> {
             bottom: 0,
             child: BottomNavbar(
               showDialogBox: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ChangeNotifierProvider(
-                        create: (ctx) => FruitsInfo(),
-                        child: FilterDialog(
-                          sortHandler: _sortFruitsTrigger,
-                          searchHandler: _runFilter,
-                        ),
-                      );
-                    });
+                showDialogBoxFilter();
               },
             ),
           ),

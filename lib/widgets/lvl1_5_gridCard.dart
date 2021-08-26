@@ -5,7 +5,7 @@ class GridCard extends StatefulWidget {
 
   final String titlee;
   final String imgUrl;
-  final int index;
+  final String index;
   final Color color1;
   GridCard(  this.titlee , this.imgUrl , this.index ,this.color1);
 
@@ -28,7 +28,7 @@ class _GridCardState extends State<GridCard> {
             SizedBox(height: 20,),
             Row(children: [ 
               SizedBox(width: 10,),
-              Expanded( child: Image.asset( 'assets/'+widget.imgUrl , fit: BoxFit.cover,) ,),
+              Expanded( child: Image.asset( ''+widget.imgUrl , fit: BoxFit.cover,) ,),
               SizedBox(width: 10,) ,
             ]),
             Container(child: Padding(
