@@ -161,28 +161,20 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
 
     Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          ListView(
-            // shrinkWrap: true,
-            padding: EdgeInsets.only(bottom: 100),
-            children: [
-              Stack(
-                children: [
-                  buildFirstAnimation(size),
-                  buildTopText(size),
-                ],
-              ),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.75,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            ListView(
+              // shrinkWrap: true,
+              padding: EdgeInsets.only(bottom: 100),
+              children: [
+                Stack(
+                  children: [
+                    buildFirstAnimation(size),
+                    buildTopText(size),
+                  ],
                 ),
                 itemBuilder: (context, i) => GridCard(
                     fruitsdisplaydata[i]['cmnName'],
@@ -197,19 +189,42 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
                 padding: const EdgeInsets.only(
                     left: 10, right: 10, top: 0, bottom: 10.0),
                 // padding: const EdgeInsets.all(0),
-              ),
-            ],
-          ),
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: BottomNavbar(
-              showDialogBox: () {
-                showDialogBoxFilter();
-              },
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.75,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, i) => GridCard(
+                      fruitsdisplaydata[i]['cmnName'],
+                      fruitsdisplaydata[i]['imgUrl'],
+                      i,
+                      fruitsdisplaydata[i]['color1']),
+                  // Container(
+                  //   child: Text(fruitsdisplaydata[i].title),
+                  //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
+                  //need to add widget above
+                  itemCount: fruitsdisplaydata.length,
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 0, bottom: 10.0),
+                  // padding: const EdgeInsets.all(0),
+                ),
+              ],
             ),
-          ),
-        ],
+            Positioned(
+              left: 0,
+              bottom: 0,
+              child: BottomNavbar(
+                showDialogBox: () {
+                  showDialogBoxFilter();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
