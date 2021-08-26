@@ -28,6 +28,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
     List<String> df = [];
     df = sharedPreferences.getStringList('quiz');
     if (df.length != 0) {
+      print(df);
       var i = 0;
       for (i = 0; i < df.length; i++) {
         if (df[i] == 'y') {
@@ -57,7 +58,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(questionToLoad['imgURL']),
+                image: AssetImage('images/'+questionToLoad['imgURL']),
                 fit: BoxFit.scaleDown,
               ),
             ),

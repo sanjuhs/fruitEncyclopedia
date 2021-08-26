@@ -26,7 +26,7 @@ class Lv3_CorrectAnswer extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(stickerURL),
+                  image: AssetImage('images/'+stickerURL),
                   fit: BoxFit.scaleDown,
                 ),
               ),
