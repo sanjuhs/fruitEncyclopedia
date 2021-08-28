@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   // print("GOLOOO");
   // SharedPreferences sharedPreferences;
-  
+
   // SharedPreferences.getInstance().then((SharedPreferences sp) {
   //   print("soloo");
   //   sharedPreferences = sp;
@@ -29,32 +29,34 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
-    void initState() {
+  void initState() {
     print("GOLOOO");
-  SharedPreferences sharedPreferences;
-  
-  SharedPreferences.getInstance().then((SharedPreferences sp) {
-    print("soloo");
-    sharedPreferences = sp;
-    List<String> qlist = [];
-    var i = 0;
-    for (i = 0; i <= 20; i++) {
-      qlist.add('y');
-    }
-    print(qlist);
-    print("XXXXXX");
-    sharedPreferences.setStringList('quiz', qlist);
-    print(sharedPreferences.getStringList('quiz'));
-    print("quiz is set");
-  });
+    SharedPreferences sharedPreferences;
+
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      print("soloo");
+      sharedPreferences = sp;
+      if (sharedPreferences.getStringList('quiz') == null) {
+        List<String> qlist = [];
+        var i = 0;
+        for (i = 0; i <= 20; i++) {
+          qlist.add('y');
+        }
+        print(qlist);
+        print("XXXXXX");
+        sharedPreferences.setStringList('quiz', qlist);
+        print(sharedPreferences.getStringList('quiz'));
+        print("quiz is set");
+        sharedPreferences.setStringList('stickers', qlist);
+        sharedPreferences.setBool('quizDone', false);
+      }
+    });
     super.initState();
   }
 

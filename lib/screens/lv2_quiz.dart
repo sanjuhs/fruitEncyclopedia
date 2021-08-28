@@ -31,14 +31,33 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
     if (df != null) {
       print("hilooooo");
       print(df);
+      //flag to check if no unanswered questions are found
+      var flag = false;
       var i = 0;
       for (i = 0; i < df.length; i++) {
         if (df[i] == 'y') {
+          flag = true;
           setState(() {
             index = i;
           });
           break;
         }
+      }
+
+      //if all ys are replaced with n's then we run the following to reset quiz questions
+      if(!flag){
+        List<String> qlist = [];
+        var i = 0;
+        for (i = 0; i <= 20; i++) {
+          qlist.add('y');
+        }
+        print(qlist);
+        print("XXXXXX");
+        sharedPreferences.setStringList('quiz', qlist);
+        print(sharedPreferences.getStringList('quiz'));
+        print("quiz is reset");
+        //
+        sharedPreferences.setBool('quizDone', true);
       }
     }
   }
@@ -96,6 +115,11 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   yList[index] = 'n';
                   print(yList);
                   sharedPreferences.setStringList('quiz', yList);
+
+                  //only if all quiz questions are answered once then don't update stickers
+                  if(sharedPreferences.getBool('quizDone') == false){
+                    sharedPreferences.setStringList('stickers', yList);
+                  }
 
                   //route to next screen
                   Navigator.pushReplacement(
