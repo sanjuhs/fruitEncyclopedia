@@ -130,56 +130,58 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen>  with SingleT
       // });
     }
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          ListView(
-            // shrinkWrap: true,
-            padding: EdgeInsets.only(bottom: 100),
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 40, top: 40, bottom: 20),
-                child: Text(
-                  'Favourites',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            ListView(
+              // shrinkWrap: true,
+              padding: EdgeInsets.only(bottom: 100),
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 40, top: 40, bottom: 20),
+                  child: Text(
+                    'Favourites',
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.75,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.75,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, i) => GridCard(
+                      favouriteFruitsList[i]['cmnName'],
+                      favouriteFruitsList[i]['imgUrl'],
+                      favouriteFruitsList[i]['id'],
+                      favouriteFruitsList[i]['color1']),
+                  // Container(
+                  //   child: Text(fruitsdisplaydata[i].title),
+                  //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
+                  //need to add widget above
+                  itemCount: favouriteFruitsList.length,
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 0, bottom: 10.0),
+                  // padding: const EdgeInsets.all(0),
                 ),
-                itemBuilder: (context, i) => GridCard(
-                    favouriteFruitsList[i]['cmnName'],
-                    favouriteFruitsList[i]['imgUrl'],
-                    favouriteFruitsList[i]['id'],
-                    favouriteFruitsList[i]['color1']),
-                // Container(
-                //   child: Text(fruitsdisplaydata[i].title),
-                //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
-                //need to add widget above
-                itemCount: favouriteFruitsList.length,
-                padding: const EdgeInsets.only(
-                    left: 10, right: 10, top: 0, bottom: 10.0),
-                // padding: const EdgeInsets.all(0),
-              ),
-            ],
-          ),
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: BottomNavbar(
-              showDialogBox: () {
-                showDialogBoxFilter();
-              },
+              ],
             ),
-          ),
-        ],
+            Positioned(
+              left: 0,
+              bottom: 0,
+              child: BottomNavbar(
+                showDialogBox: () {
+                  showDialogBoxFilter();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

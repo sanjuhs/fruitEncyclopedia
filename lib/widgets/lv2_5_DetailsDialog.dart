@@ -30,31 +30,41 @@ class _DetailsDialogState extends State<DetailsDialog> {
             width: double.infinity,
             decoration: BoxDecoration(color: Colors.black),
             child: Scaffold(
-              body: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.only(top: 30, left: 30, right: 30 , bottom: 0),
-                    child: IconButton(
-                      alignment: Alignment.topLeft,
-                      icon: Icon(
-                        Icons.cancel_rounded,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  Container(child:Text(widget.fruit['cmnName'])),
-                  Container(
-                    transform: Matrix4.translationValues(0.0, -25.0, 0.0),
-                    decoration: BoxDecoration(
-                        // color: Colors.yellow,
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.only(top: 30, left: 30, right: 30 , bottom: 0),
+                      child: IconButton(
+                        alignment: Alignment.topLeft,
+                        icon: Icon(
+                          Icons.cancel_rounded,
                         ),
-                    padding: EdgeInsets.only(top: 30, left: 30, right: 30 ,bottom: 30),
-                    child: Text(widget.fruit['description']),
-                  ),
-                ],
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                    Container(child:Text(widget.fruit['cmnName'] , style: TextStyle(fontSize: 25 ,fontWeight: FontWeight.bold ), )),
+                    SizedBox(height: 15,),
+                    Divider(height: 1, thickness: 3, indent: 70, endIndent: 70, color:  widget.fruit['color1'] ,
+                              ),SizedBox(height: 10,),
+                    
+                    Container(
+                      transform: Matrix4.translationValues(0.0, -25.0, 0.0),
+                      decoration: BoxDecoration(
+                          // color: Colors.yellow,
+                          ),
+                      padding: EdgeInsets.only(top: 30, left: 40, right: 40 ,bottom: 30),
+                      child: Text(widget.fruit['description'] , style: TextStyle(fontSize: 18),),
+                          ),
+                    SizedBox(height: 135,),
+                    //Text("data")
+                        
+                    
+                  ],
+                ),
               ),
             ),
           ),
