@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
       if (sharedPreferences.getStringList('quiz') == null) {
         List<String> qlist = [];
         var i = 0;
-        for (i = 0; i <= 20; i++) {
+        for (i = 0; i < 15; i++) {
           qlist.add('y');
         }
         print(qlist);

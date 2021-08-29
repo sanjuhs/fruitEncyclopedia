@@ -20,49 +20,51 @@ class _TreeDialogState extends State<TreeDialog> {
     print(size.height);
     print(size.width);
 
-    return Container(
-      width: 0.8 * size.width,
-      height: 0.8 * size.height,
-      child: ClipPath(
-        clipper: DialogClipper(),
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(color: Colors.black),
-          child: Scaffold(
-            body: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.only(top: 15, left: 10, right: 5),
-                  child: IconButton(
-                    alignment: Alignment.topLeft,
-                    icon: Icon(
-                      Icons.cancel_rounded,
+    return SafeArea(
+      child: Container(
+        width: 0.8 * size.width,
+        height: 0.8 * size.height,
+        child: ClipPath(
+          clipper: DialogClipper(),
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(color: Colors.black),
+            child: Scaffold(
+              body: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.only(top: 30, left: 30, right: 30 , bottom: 0),
+                    child: IconButton(
+                      alignment: Alignment.topLeft,
+                      icon: Icon(
+                        Icons.cancel_rounded,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
-                ),
-                Container(
-                  transform: Matrix4.translationValues(0.0, -70.0, 0.0),
-                  width: double.infinity,
-                  height: 0.6 * size.height,
-                  child: CustomPaint(
-                    child: Container(
-                      transform: Matrix4.translationValues(0.0, 80.0, 0.0),
-                      padding: EdgeInsets.all(20),
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(widget.fruit['treeURL']),
-                          fit: BoxFit.scaleDown,
+                  Container(
+                    transform: Matrix4.translationValues(0.0, -70.0, 0.0),
+                    width: double.infinity,
+                    height: 0.6 * size.height,
+                    child: CustomPaint(
+                      child: Container(
+                        transform: Matrix4.translationValues(0.0, 80.0, 0.0),
+                        padding: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/'+widget.fruit['treeURL']),
+                            fit: BoxFit.scaleDown,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

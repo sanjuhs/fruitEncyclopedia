@@ -56,8 +56,9 @@ class _FilterDialogState extends State<FilterDialog> {
 
                 
                 
-
-                  Text('Sort By Alphabet:'),
+                  SizedBox(height: 15,),
+                  Text('Sort By Alphabet:' , style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold),),
+                  SizedBox(height: 40,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [

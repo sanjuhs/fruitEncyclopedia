@@ -1873,13 +1873,8 @@ class FruitsInfo with ChangeNotifier {
     notifyListeners();
   }
 
-  List<Map<String, dynamic>> get fruitsListNew => _searchString.isEmpty
-      ? [..._fruitsNew]
-      : _fruitsNew
-          .where((fruit) => fruit['cmnName']
-              .toLowerCase()
-              .contains(_searchString.toLowerCase()))
-          .toList();
-
+  List<Map<String, dynamic>> get fruitsListNew => 
+      [..._fruitsNew];
+      
   String get getSearchString => _searchString;
 }

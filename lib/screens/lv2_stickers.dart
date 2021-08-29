@@ -14,7 +14,7 @@ import 'package:myapp8_fruit_encyclopedia/widgets/lvl1_5_gridCard.dart';
 import 'package:myapp8_fruit_encyclopedia/widgets/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class Lv2StickersScreen extends StatefulWidget {
   @override
   _Lv2StickersScreenState createState() => _Lv2StickersScreenState();
@@ -29,18 +29,23 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
 
   void _loadStickers() async {
     String data =
-        await rootBundle.loadString("sticker_packs/sticker_pack.json");
+        await rootBundle.loadString("sticker_packs/sticker_packs.json");
     response = json.decode(data);
 
-    var tempName = response["identifier"];
-    tempInstall = await WhatsAppStickers().isStickerPackInstalled(tempName);
+    //var tempName = response["identifier"];
+    //tempInstall = await WhatsAppStickers().isStickerPackInstalled(tempName);
 
     _checkInstallationStatuses();
   }
 
   void _checkInstallationStatuses() async{
-     var tempName = response["identifier"];
-    tempInstall = await WhatsAppStickers().isStickerPackInstalled(tempName);
+     var tempName = response["sticker_packs"][0]["identifier"];
+     print("temp name is below : ");
+    print(tempName);
+
+    tempInstall = await _waStickers.isStickerPackInstalled(tempName);
+    print(tempInstall);
+    print("XXXX"); 
   }
 
   @override
@@ -60,7 +65,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
     super.initState();
   }
 
-  void showSticker() async {
+  void showSticker( String imgPath) async {
     print('showing');
     return showDialog(
         context: context,
@@ -72,17 +77,17 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
               // margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('images/f_01.webp'),
+                  image: AssetImage('assets/images/'+imgPath),
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-            actions: [
-              TextButton(
-                child: Text('Add to WhatsApp'),
-                onPressed: () {},
-              )
-            ],
+            // actions: [
+            //   TextButton(
+            //     child: Text('Add to WhatsApp'),
+            //     onPressed: () {},
+            //   )
+            // ],
           );
         });
   }
@@ -123,7 +128,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 1,
-                  crossAxisCount: 2,
+                  crossAxisCount: 3,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 10,
                 ),
@@ -133,9 +138,10 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                     //     fruitsdisplaydata[i]['imgUrl'],
                     //     fruitsdisplaydata[i]['id'],
                     //     fruitsdisplaydata[i]['color1']),
-                    qStatusList[i] == 'y'
-                        ? GestureDetector(
-                            child: Container(
+                    
+                    qStatusList!= null && (qStatusList[i] == 'y')
+                        ? 
+                            Container(
                               transform:
                                   Matrix4.translationValues(0.0, 20.0, 0.0),
                               padding: EdgeInsets.all(20),
@@ -143,24 +149,26 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                               decoration: BoxDecoration(
                                 color: Colors.orange[400],
                               ),
-                            ),
-                            onTap: () {
-                              showSticker();
-                            },
-                          )
-                        : Container(
-                            transform:
-                                Matrix4.translationValues(0.0, 20.0, 0.0),
-                            padding: EdgeInsets.all(20),
-                            margin: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('images/' +
-                                    quizQuestionsList[i]['stickerURL']),
-                                fit: BoxFit.scaleDown,
+                            )
+                          
+                        : GestureDetector(
+                          child: Container(
+                              transform:
+                                  Matrix4.translationValues(0.0, 20.0, 0.0),
+                              padding: EdgeInsets.all(20),
+                              margin: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/' +
+                                      quizQuestionsList[i]['stickerURL']),
+                                  fit: BoxFit.scaleDown,
+                                ),
                               ),
                             ),
-                          ),
+                            onTap: () {
+                              showSticker(quizQuestionsList[i]['stickerURL']);
+                            },
+                        ),
                 // Container(
                 //   child: Text(fruitsdisplaydata[i].title),
                 //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
@@ -170,7 +178,28 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 //     left: 10, right: 10, top: 0, bottom: 10.0),
                 // padding: const EdgeInsets.all(0),
               ),
+              SizedBox(height: 15,),
+              Center(child: ElevatedButton( child: Text("Add to whatsapp"),onPressed: () async {
+                      _waStickers.addStickerPack(
+                      packageName: WhatsAppPackage.Consumer,
+                      stickerPackIdentifier: response["sticker_packs"][0]["identifier"],
+                      stickerPackName: response["sticker_packs"][0]["name"],
+                      listener: (action, result, {error}) => processResponse(
+                        action: action,
+                        result: result,
+                        error: error,
+                        successCallback: _checkInstallationStatuses,
+                        // () async {
+                        //   _checkInstallationStatuses();
+                        // },
+                        context: context,
+                      ),
+                    );
+              }, 
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.lightBlue)),)),
+              SizedBox(height: 135,),
             ],
+            
           ),
           Positioned(
             left: 0,
@@ -240,21 +269,22 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                         ),
                         IconButton(
                             icon: Icon(
-                              Icons.filter_list_outlined,
+                              Icons.add,
                               color: Colors.grey.shade400,
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               _waStickers.addStickerPack(
                                 packageName: WhatsAppPackage.Consumer,
-                                stickerPackIdentifier: response['identifier'],
-                                stickerPackName: response['name'],
+                                stickerPackIdentifier: response["sticker_packs"][0]["identifier"],
+                                stickerPackName: response["sticker_packs"][0]["name"],
                                 listener: (action, result, {error}) => processResponse(
                                   action: action,
                                   result: result,
                                   error: error,
-                                  successCallback: () async {
-                                    _checkInstallationStatuses();
-                                  },
+                                  successCallback: _checkInstallationStatuses , 
+                                  //  () async {
+                                  //   _checkInstallationStatuses();
+                                  // },
                                   context: context,
                                 ),
                               );

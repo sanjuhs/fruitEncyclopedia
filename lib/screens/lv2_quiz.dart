@@ -35,6 +35,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
       var flag = false;
       var i = 0;
       for (i = 0; i < df.length; i++) {
+        print("in loop + ${i}");
         if (df[i] == 'y') {
           flag = true;
           setState(() {
@@ -162,7 +163,9 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   yList[index] = 'n';
 
                   sharedPreferences.setStringList('quiz', yList);
-
+                  if(sharedPreferences.getBool('quizDone') == false){
+                    sharedPreferences.setStringList('stickers', yList);
+                  }
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
@@ -204,7 +207,9 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   print(yList);
                   sharedPreferences.setStringList('quiz', yList);
                   //print(sharedPreferences.getStringList('favourites'));
-
+                  if(sharedPreferences.getBool('quizDone') == false){
+                    sharedPreferences.setStringList('stickers', yList);
+                  }
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
@@ -244,7 +249,9 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
                   sharedPreferences.setStringList('quiz', yList);
-
+                  if(sharedPreferences.getBool('quizDone') == false){
+                    sharedPreferences.setStringList('stickers', yList);
+                  }
                   //route to next screen
                   Navigator.pushReplacement(
                     context,
