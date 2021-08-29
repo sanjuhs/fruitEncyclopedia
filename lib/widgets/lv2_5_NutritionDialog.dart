@@ -54,16 +54,37 @@ class _NutritionDialogState extends State<NutritionDialog> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
+                            Text("Nutritional Information" ,
+                              style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold , color: Colors.blue ),),
+                            SizedBox(height: 5,),
+                            Text("( values per 100 gms )"),
+                            SizedBox(height: 5,),
+                            const Divider(height: 20, thickness: 5, indent: 20, endIndent: 20,
+                            ),SizedBox(height: 10,),
+
+                            // RichText(text: TextSpan(
+                            //   // text: 'Calories: ',
+                            //   style: TextStyle(fontSize: 15 , color: Colors.black , ),
+                            //   children:[
+                            //     TextSpan(text: 'Calories: ' , style: TextStyle( color: Colors.black ,fontWeight: FontWeight.bold )),
+                            //     TextSpan(text: '${widget.fruit['calories']} ' , style: TextStyle()),
+                            //     TextSpan(text: ' kcal' , style: TextStyle(fontWeight: FontWeight.bold)),
+                            //   ],
+                            //  )),SizedBox(height: 15,),
+
                             Text(
                               "Calories : ${widget.fruit['calories']} kcal",
-                              //style: TextStyle(height: lineHeight),
-                            ),
-                            SizedBox(height: 15,),
+                              style: TextStyle(fontWeight: FontWeight.bold , fontSize: 18),
+                            ),SizedBox(height: 10,),
+
+                            const Divider(height: 1, thickness: 2, indent: 70, endIndent: 70,
+                            ),SizedBox(height: 10,),
+                            
                             Text(
-                              "Carbohydratess : ${widget.fruit['carb']} g",
+                              "Carbohydrates : ${widget.fruit['carb']} g",
                               //style: TextStyle(height: lineHeight),
-                            ),
-                            SizedBox(height: 15,),
+                            ),SizedBox(height: 15,),
+
                             Text(
                               "Sugar : ${widget.fruit['sugar']} g",
                               //style: TextStyle(height: lineHeight),
@@ -84,6 +105,10 @@ class _NutritionDialogState extends State<NutritionDialog> {
                               "Water : ${widget.fruit['water']} g",
                               //style: TextStyle(height: lineHeight),
                             ),SizedBox(height: 15,),
+
+                            const Divider(height: 1, thickness: 2, indent: 70, endIndent: 70,
+                            ),SizedBox(height: 10,),
+
                             Text(
                               "Vitamin A : ${widget.fruit['vitA']} mg",
                               //style: TextStyle(height: lineHeight),
@@ -144,6 +169,10 @@ class _NutritionDialogState extends State<NutritionDialog> {
                               "Choline : ${widget.fruit['choline']} mg",
                               //style: TextStyle(height: lineHeight),
                             ),SizedBox(height: 15,),
+
+                            const Divider(height: 1, thickness: 2, indent: 70, endIndent: 70,
+                            ),SizedBox(height: 10,),
+
                             Text(
                               "Potassium : ${widget.fruit['potassium']} mg",
                               //style: TextStyle(height: lineHeight),

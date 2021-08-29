@@ -4,14 +4,14 @@ class Quiz with ChangeNotifier {
   List<Map<String, dynamic>> _quizQuestions = [
     {
       "id": "1",
-      "questionText": "which fruit does the above dish use ?",
+      "questionText": "Which fruit does the above dish use ?",
       "option1": "Orange",
       "option2": "Lemon",
       "option3": "Mango",
       "option4": "papaya",
       "answerText": "Mango",
       "imgURL": "qp1.webp",
-      "hintText": "Yellowish sweet fruit primarily frown in India",
+      "hintText": "Yellowish sweet fruit primarily grown in India",
       "stickerURL": "s1.webp"
     },
     {
@@ -24,7 +24,7 @@ class Quiz with ChangeNotifier {
       "option4": "Guava",
       "answerText": "raspberry",
       "imgURL": "qp2.webp",
-      "hintText": "the fruit is sweet and red",
+      "hintText": "The fruit is sweet and red",
       "stickerURL": "s2.webp"
     },
     {
@@ -43,7 +43,7 @@ class Quiz with ChangeNotifier {
     {
       "id": "4",
       "questionText":
-          "This dish is called a duff which fruit does it use usally?",
+          "This dish is called a duff which fruit does it use usually?",
       "option1": "Date",
       "option2": "Choclate",
       "option3": "Vanilla",
@@ -56,27 +56,27 @@ class Quiz with ChangeNotifier {
     {
       "id": "5",
       "questionText":
-          "this jar has a conction of higly concentrated fruit syrup ,(also called as fruit Butter ) which fruit is this ?",
+          "This jar has a concoction of highly concentrated fruit syrup ,(also called as fruit Butter ) which fruit is this ?",
       "option1": "Banana",
       "option2": "Cherry",
       "option3": "Apple",
       "option4": "Coconut",
       "answerText": "Apple",
       "imgURL": "qp5.webp",
-      "hintText": "it is a red , sweet fruit , very famous",
+      "hintText": "It is a red , sweet fruit , very famous",
       "stickerURL": "s5.webp"
     },
     {
       "id": "6",
       "questionText":
-          "this dish is called Poire \u00e0 la Beaujolaise , what does it contian ?",
+          "This dish is called Poire \u00e0 la Beaujolaise , what does it contain ?",
       "option1": "Mango",
       "option2": "Pear",
       "option3": "Orange",
       "option4": "Peach",
       "answerText": "Pear",
       "imgURL": "qp6.webp",
-      "hintText": "the first word of the dish spells it out ",
+      "hintText": "The first word of the dish spells it out ",
       "stickerURL": "s6.webp"
     },
     {
@@ -94,20 +94,20 @@ class Quiz with ChangeNotifier {
     {
       "id": "8",
       "questionText":
-          "this dish a traditional georgian dish called ChurchKhela , what does it contain",
+          "This dish is a traditional georgian dish called ChurchKhela , what does it contain",
       "option1": "Tamarind",
       "option2": "Grapes",
       "option3": "Vanilla",
       "option4": "Orange",
       "answerText": "Grapes",
       "imgURL": "qp8.webp",
-      "hintText": "its also used in wine",
+      "hintText": "Its also used in wine",
       "stickerURL": "s8.webp"
     },
     {
       "id": "9",
       "questionText":
-          "this fruit when put in the above dish , Polarizes many people.",
+          "This fruit when put in the above dish , Polarizes many people.",
       "option1": "Lemon",
       "option2": "Banana",
       "option3": "Jackfruit",
@@ -140,7 +140,7 @@ class Quiz with ChangeNotifier {
       "answerText": "Plum",
       "imgURL": "qp11.webp",
       "hintText":
-          "it is dumpling with a potato covering , Sweet fruit onnards ",
+          "It is a dumpling with a potato covering , Sweet fruit innards ",
       "stickerURL": "s11.webp"
     },
     {
@@ -153,7 +153,7 @@ class Quiz with ChangeNotifier {
       "option4": "Sapote",
       "answerText": "Coconut",
       "imgURL": "qp12.webp",
-      "hintText": "This fruit contians water in its core , ",
+      "hintText": "This fruit contains water in its core , ",
       "stickerURL": "s12.webp"
     },
     {
@@ -166,7 +166,7 @@ class Quiz with ChangeNotifier {
       "option4": "Melon",
       "answerText": "Melon",
       "imgURL": "qp13.webp",
-      "hintText": "Its grown in winter is large fruit ",
+      "hintText": "Its grown in winter, is large fruit ",
       "stickerURL": "s13.webp"
     },
     {

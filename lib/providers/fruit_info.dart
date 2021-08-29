@@ -492,7 +492,7 @@ class FruitsInfo with ChangeNotifier {
       "scfName": "Citrullus lanatus",
       "color1": Colors.green[100],
       "slDescription":
-          "he watermelon is a large fruit of a more or less spherical shape. It is usually eaten raw as table dessert. It has a sweet reddish or yellowish flesh. It is a very refreshing food that supplies very few calories. It also provides some vitamins and minerals.",
+          "The watermelon is a large fruit of a more or less spherical shape. It is usually eaten raw as table dessert. It has a sweet reddish or yellowish flesh. It is a very refreshing food that supplies very few calories. It also provides some vitamins and minerals.",
       "description":
           """Watermelon is grown in favorable climates from tropical to temperate regions worldwide for its large edible fruit. The fruit can be eaten raw or pickled, and the rind is edible after cooking. It may also be consumed as a juice or as an ingredient in mixed beverages.\n\nEvidence of the cultivation of watermelon in the Nile Valley has been found from the second millennium BC onward, and seeds of both species have been found at Twelfth Dynasty sites and in the tomb of Pharaoh Tutankhamun. Watermelons were cultivated for their high water content and were stored to be eaten during dry seasons, not only as a food source, but as a method of storing water.They are called as Xigua in China .\nIn 2017, global production of watermelons was 118 million tonnes, with China alone accounting for 67% of the total. Secondary producers included Iran, Turkey, and Brazil.""",
       "imgUrl": "f_12.webp",
