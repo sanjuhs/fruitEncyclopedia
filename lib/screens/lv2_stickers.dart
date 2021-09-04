@@ -73,9 +73,6 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             content: Container(
-              // transform: Matrix4.translationValues(0.0, 20.0, 0.0),
-              // padding: EdgeInsets.all(20),
-              // margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/' + imgPath),
@@ -83,12 +80,6 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 ),
               ),
             ),
-            // actions: [
-            //   TextButton(
-            //     child: Text('Add to WhatsApp'),
-            //     onPressed: () {},
-            //   )
-            // ],
           );
         });
   }
@@ -179,22 +170,31 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 // padding: const EdgeInsets.all(0),
               ),
               SizedBox(
-                height: 0.1*size.width,
+                height: 0.1 * size.width,
               ),
               Center(
                   child: ElevatedButton(
-                   
-                child: Text("Add to WhatsApp", style: TextStyle(fontSize: 0.05*size.width),),
+                child: Text(
+                  "Add to WhatsApp",
+                  style: TextStyle(fontSize: 0.05 * size.width),
+                ),
                 onPressed: () async {
                   if (qStatusList != null) {
                     int i = 0;
                     for (i = 0; i < qStatusList.length; i++) {
+                      print(qStatusList[i]);
                       //if at least one of the entries is 'y', that means all stickers aren't unlocked
                       if (qStatusList[i] == 'y') {
-                        return AlertDialog(
-                          content: Text(
-                              'Unlock All stickers by answering all quiz questions !'),
-                        );
+                        return showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Text(
+                                  'Unlock all stickers by answering all quiz questions !',
+                                  style: TextStyle(fontSize: 0.04 * size.width),
+                                ),
+                              );
+                            });
                       }
                     }
                   }
@@ -216,9 +216,9 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                   );
                 },
                 style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.all(0.01 * size.width),
-                        ),
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.all(0.01 * size.width),
+                    ),
                     backgroundColor:
                         MaterialStateProperty.all(Colors.lightBlue)),
               )),
@@ -315,10 +315,17 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                                 for (i = 0; i < qStatusList.length; i++) {
                                   //if at least one of the entries is 'y', that means all stickers aren't unlocked
                                   if (qStatusList[i] == 'y') {
-                                    return AlertDialog(
-                                      content: Text(
-                                          'Unlock All stickers by answering all quiz questions !'),
-                                    );
+                                    return showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            content: Text(
+                                              'Unlock all stickers by answering all quiz questions !',
+                                              style: TextStyle(
+                                                  fontSize: 0.04 * size.width),
+                                            ),
+                                          );
+                                        });
                                   }
                                 }
                               }
