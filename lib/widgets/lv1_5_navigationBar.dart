@@ -14,93 +14,105 @@ class BottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Container(
-        width: size.width,
-        height: 80,
-        child: Stack(
-          overflow: Overflow.visible,
-          children: [
-            CustomPaint(
-              size: Size(size.width, 80),
-              painter: BNBCustomPainter(),
-            ),
-            Center(
-              heightFactor: 0.6,
+      width: size.width,
+      height: 0.15 * size.width,
+      child: Stack(
+        overflow: Overflow.visible,
+        children: [
+          CustomPaint(
+            size: Size(size.width, 0.15 * size.width),
+            painter: BNBCustomPainter(),
+          ),
+          Center(
+            heightFactor: 0.4,
+            child: Container(
+              width: 0.3*size.width,
+              height: 0.3*size.height,
               child: FloatingActionButton(
                   backgroundColor: Colors.orange,
-                  child: Icon(Icons.quiz_sharp),
+                  child: Icon(
+                    Icons.quiz_sharp,
+                    size: 0.07 * size.width,
+                  ),
                   elevation: 0.1,
                   onPressed: () {
-                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Lv2_Quiz(),
-                        ),
-                      );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Lv2_Quiz(),
+                      ),
+                    );
                   }),
             ),
-            Container(
-              width: size.width,
-              height: 80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
+          ),
+          Container(
+            width: size.width,
+            height: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.star_border_outlined,
+                    color: Colors.grey.shade400,
+                    size: 0.07 * size.width,
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Lv2FavouritesScreen(),
+                      ),
+                    );
+                  },
+                  splashColor: Colors.white,
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.home_outlined,
+                    color: Colors.grey.shade400,
+                    size: 0.07 * size.width,
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => lvl1GridScreenLanding(),
+                      ),
+                    );
+                  },
+                ),
+                Container(
+                  width: size.width * 0.20,
+                ),
+                IconButton(
                     icon: Icon(
-                      Icons.star_border_outlined,
+                      Icons.filter_list_outlined,
                       color: Colors.grey.shade400,
+                      size: 0.07 * size.width,
+                    ),
+                    onPressed: () {
+                      this.showDialogBox();
+                    }),
+                IconButton(
+                    icon: Icon(
+                      Icons.emoji_events_outlined,
+                      color: Colors.grey.shade400,
+                      size: 0.07 * size.width,
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Lv2FavouritesScreen(),
-                        ),
-                      );
-                    },
-                    splashColor: Colors.white,
-                  ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.home_outlined,
-                        color: Colors.grey.shade400,
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => lvl1GridScreenLanding(),
-                        ),
-                      );
-                      },),
-                  Container(
-                    width: size.width * 0.20,
-                  ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.filter_list_outlined,
-                        color: Colors.grey.shade400,
-                      ),
-                      onPressed: () {
-                        this.showDialogBox();
-                      }),
-                  IconButton(
-                      icon: Icon(
-                        Icons.emoji_events_outlined,
-                        color: Colors.grey.shade400,
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
                           builder: (context) => Lv2StickersScreen(),
                         ),
                       );
-                      }),
-                ],
-              ),
-            )
-          ],
-        ),
+                    }),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

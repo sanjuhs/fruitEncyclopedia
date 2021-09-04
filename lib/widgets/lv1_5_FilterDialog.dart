@@ -27,60 +27,85 @@ class _FilterDialogState extends State<FilterDialog> {
     TextEditingController _controller1 = TextEditingController();
     _controller1.text = searchString;
 
-    return  Container(
-        margin: EdgeInsets.only(top: 0.3 * size.height),
-        child: Dialog(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          child: ClipPath(
-            clipper: DialogClipper(),
-            child: Container(
-              width: size.width,
-              height: 0.3 * size.height,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: size.width,
-                    height: 20,
-                    child: IconButton(
-                      alignment: Alignment.topRight,
-                      icon: Icon(
-                        Icons.cancel_rounded,
+    return Container(
+      margin: EdgeInsets.only(top: 0.3 * size.height),
+      child: Dialog(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        child: ClipPath(
+          clipper: DialogClipper(),
+          child: Container(
+            width: size.width,
+            height: 0.3 * size.height,
+            decoration: BoxDecoration(color: Colors.white),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: size.width,
+                  height: 0.1 * size.width,
+                  child: IconButton(
+                    alignment: Alignment.topRight,
+                    icon: Icon(
+                      Icons.cancel_rounded,
+                      size: 0.02 * size.width,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context, _controller1.text);
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 0.02 * size.width,
+                ),
+                Text(
+                  'Sort By Alphabet:',
+                  style: TextStyle(
+                      fontSize: 0.05 * size.width, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 0.05 * size.width,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          EdgeInsets.all(0.01 * size.width),
+                        ),
                       ),
                       onPressed: () {
-                        Navigator.pop(context,_controller1.text);
+                        // Provider.of<FruitsInfo>(context).sortFruits(true);
+                        widget.sortHandler(true);
                       },
+                      child: Text(
+                        'A-Z',
+                        style: TextStyle(fontSize: 0.05 * size.width),
+                      ),
                     ),
-                  ),
-
-                
-                
-                  SizedBox(height: 15,),
-                  Text('Sort By Alphabet:' , style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold),),
-                  SizedBox(height: 40,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            // Provider.of<FruitsInfo>(context).sortFruits(true);
-                            widget.sortHandler(true);
-                          },
-                          child: Text('A-Z')),
-                      ElevatedButton(
-                          onPressed: () {
-                            widget.sortHandler(false);
-                          },
-                          child: Text('Z-A')),
-                    ],
-                  ),
-                ],
-              ),
-
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          EdgeInsets.all(0.01 * size.width),
+                        ),
+                      ),
+                      onPressed: () {
+                        widget.sortHandler(false);
+                      },
+                      child: Text(
+                        'Z-A',
+                        style: TextStyle(
+                          fontSize: 0.05 * size.width,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
+      ),
     );
     // return Container(
     //   child: Text('suhas'),

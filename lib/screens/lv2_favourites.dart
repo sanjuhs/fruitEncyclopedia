@@ -70,6 +70,8 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen>  with SingleT
     var favouriteFruits = Provider.of<Favourites>(context);
     // var favouriteFruitsList = favouriteFruits.favouriteFruitsListProvider;
 
+    var size = MediaQuery.of(context).size;
+
     var favouriteFruitsList = [];
 
     var fruitsData = Provider.of<FruitsInfo>(context);
@@ -140,10 +142,10 @@ class _Lv2FavouritesScreenState extends State<Lv2FavouritesScreen>  with SingleT
               padding: EdgeInsets.only(bottom: 100),
               children: [
                 Container(
-                  padding: EdgeInsets.only(left: 40, top: 40, bottom: 20),
+                  padding: EdgeInsets.only(left: 0.05*size.width, top: 0.05*size.width, bottom: 0.05*size.width),
                   child: Text(
                     'Favourites',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 0.07*size.width, fontWeight: FontWeight.bold),
                   ),
                 ),
                 GridView.builder(
