@@ -35,20 +35,21 @@ class _DetailsDialogState extends State<DetailsDialog> {
                   children: [
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.only(top: 30, left: 30, right: 30 , bottom: 0),
+                     padding: EdgeInsets.only(top: 0.06*size.width, left: 0.06*size.width, right: 0),
                       child: IconButton(
                         alignment: Alignment.topLeft,
                         icon: Icon(
                           Icons.cancel_rounded,
+                          size: 0.05*size.width,
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                       ),
                     ),
-                    Container(child:Text(widget.fruit['cmnName'] , style: TextStyle(fontSize: 25 ,fontWeight: FontWeight.bold ), )),
+                    Container(child:Text(widget.fruit['cmnName'] , style: TextStyle(fontSize: 0.07*size.width ,fontWeight: FontWeight.bold ), )),
                     SizedBox(height: 15,),
-                    Divider(height: 1, thickness: 3, indent: 70, endIndent: 70, color:  widget.fruit['color1'] ,
+                    Divider(height: 0.0001*size.width, thickness: 0.0003*size.width, indent: 70, endIndent: 70, color:  widget.fruit['color1'] ,
                               ),SizedBox(height: 10,),
                     
                     Container(
@@ -56,8 +57,8 @@ class _DetailsDialogState extends State<DetailsDialog> {
                       decoration: BoxDecoration(
                           // color: Colors.yellow,
                           ),
-                      padding: EdgeInsets.only(top: 30, left: 40, right: 40 ,bottom: 30),
-                      child: Text(widget.fruit['description'] , style: TextStyle(fontSize: 18),),
+                      padding: EdgeInsets.only(top: 0.1*size.width, left:  0.1*size.width, right:  0.1*size.width ,bottom:  0.3*size.width),
+                      child: Text(widget.fruit['description'] , style: TextStyle(fontSize: 0.03*size.width),),
                           ),
                     SizedBox(height: 135,),
                     //Text("data")

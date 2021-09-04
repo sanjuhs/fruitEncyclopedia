@@ -15,6 +15,7 @@ import 'package:myapp8_fruit_encyclopedia/widgets/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 class Lv2StickersScreen extends StatefulWidget {
   @override
   _Lv2StickersScreenState createState() => _Lv2StickersScreenState();
@@ -38,14 +39,14 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
     _checkInstallationStatuses();
   }
 
-  void _checkInstallationStatuses() async{
-     var tempName = response["sticker_packs"][0]["identifier"];
-     print("temp name is below : ");
+  void _checkInstallationStatuses() async {
+    var tempName = response["sticker_packs"][0]["identifier"];
+    print("temp name is below : ");
     print(tempName);
 
     tempInstall = await _waStickers.isStickerPackInstalled(tempName);
     print(tempInstall);
-    print("XXXX"); 
+    print("XXXX");
   }
 
   @override
@@ -65,7 +66,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
     super.initState();
   }
 
-  void showSticker( String imgPath) async {
+  void showSticker(String imgPath) async {
     print('showing');
     return showDialog(
         context: context,
@@ -77,7 +78,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
               // margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/'+imgPath),
+                  image: AssetImage('assets/images/' + imgPath),
                   fit: BoxFit.contain,
                 ),
               ),
@@ -120,7 +121,8 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 padding: EdgeInsets.only(left: 40, top: 40, bottom: 0),
                 child: Text(
                   'Rewards',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 0.07 * size.width, fontWeight: FontWeight.bold),
                 ),
               ),
               GridView.builder(
@@ -138,21 +140,19 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                     //     fruitsdisplaydata[i]['imgUrl'],
                     //     fruitsdisplaydata[i]['id'],
                     //     fruitsdisplaydata[i]['color1']),
-                    
-                    qStatusList!= null && (qStatusList[i] == 'y')
-                        ? 
-                            Container(
-                              transform:
-                                  Matrix4.translationValues(0.0, 20.0, 0.0),
-                              padding: EdgeInsets.all(20),
-                              margin: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.orange[400],
-                              ),
-                            )
-                          
+
+                    qStatusList != null && (qStatusList[i] == 'y')
+                        ? Container(
+                            transform:
+                                Matrix4.translationValues(0.0, 20.0, 0.0),
+                            padding: EdgeInsets.all(20),
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.orange[400],
+                            ),
+                          )
                         : GestureDetector(
-                          child: Container(
+                            child: Container(
                               transform:
                                   Matrix4.translationValues(0.0, 20.0, 0.0),
                               padding: EdgeInsets.all(20),
@@ -168,7 +168,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                             onTap: () {
                               showSticker(quizQuestionsList[i]['stickerURL']);
                             },
-                        ),
+                          ),
                 // Container(
                 //   child: Text(fruitsdisplaydata[i].title),
                 //   decoration: BoxDecoration(color:fruitsdisplaydata[i].color2 ),),
@@ -178,56 +178,89 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 //     left: 10, right: 10, top: 0, bottom: 10.0),
                 // padding: const EdgeInsets.all(0),
               ),
-              SizedBox(height: 15,),
-              Center(child: ElevatedButton( child: Text("Add to whatsapp"),onPressed: () async {
-                      _waStickers.addStickerPack(
-                      packageName: WhatsAppPackage.Consumer,
-                      stickerPackIdentifier: response["sticker_packs"][0]["identifier"],
-                      stickerPackName: response["sticker_packs"][0]["name"],
-                      listener: (action, result, {error}) => processResponse(
-                        action: action,
-                        result: result,
-                        error: error,
-                        successCallback: _checkInstallationStatuses,
-                        // () async {
-                        //   _checkInstallationStatuses();
-                        // },
-                        context: context,
-                      ),
-                    );
-              }, 
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.lightBlue)),)),
-              SizedBox(height: 135,),
+              SizedBox(
+                height: 0.1*size.width,
+              ),
+              Center(
+                  child: ElevatedButton(
+                   
+                child: Text("Add to WhatsApp", style: TextStyle(fontSize: 0.05*size.width),),
+                onPressed: () async {
+                  if (qStatusList != null) {
+                    int i = 0;
+                    for (i = 0; i < qStatusList.length; i++) {
+                      //if at least one of the entries is 'y', that means all stickers aren't unlocked
+                      if (qStatusList[i] == 'y') {
+                        return AlertDialog(
+                          content: Text(
+                              'Unlock All stickers by answering all quiz questions !'),
+                        );
+                      }
+                    }
+                  }
+                  _waStickers.addStickerPack(
+                    packageName: WhatsAppPackage.Consumer,
+                    stickerPackIdentifier: response["sticker_packs"][0]
+                        ["identifier"],
+                    stickerPackName: response["sticker_packs"][0]["name"],
+                    listener: (action, result, {error}) => processResponse(
+                      action: action,
+                      result: result,
+                      error: error,
+                      successCallback: _checkInstallationStatuses,
+                      // () async {
+                      //   _checkInstallationStatuses();
+                      // },
+                      context: context,
+                    ),
+                  );
+                },
+                style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.all(0.01 * size.width),
+                        ),
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.lightBlue)),
+              )),
+              SizedBox(
+                height: 0.25 * size.width,
+              ),
             ],
-            
           ),
           Positioned(
             left: 0,
             bottom: 0,
             child: Container(
               width: size.width,
-              height: 80,
+              height: 0.15 * size.width,
               child: Stack(
                 overflow: Overflow.visible,
                 children: [
                   CustomPaint(
-                    size: Size(size.width, 80),
+                    size: Size(size.width, 0.15 * size.width),
                     painter: BNBCustomPainter(),
                   ),
                   Center(
-                    heightFactor: 0.6,
-                    child: FloatingActionButton(
-                        backgroundColor: Colors.orange,
-                        child: Icon(Icons.quiz_sharp),
-                        elevation: 0.1,
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Lv2_Quiz(),
-                            ),
-                          );
-                        }),
+                    heightFactor: 0.4,
+                    child: Container(
+                      width: 0.3 * size.width,
+                      height: 0.3 * size.height,
+                      child: FloatingActionButton(
+                          backgroundColor: Colors.orange,
+                          child: Icon(
+                            Icons.quiz_sharp,
+                            size: 0.07 * size.width,
+                          ),
+                          elevation: 0.1,
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Lv2_Quiz(),
+                              ),
+                            );
+                          }),
+                    ),
                   ),
                   Container(
                     width: size.width,
@@ -239,6 +272,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                           icon: Icon(
                             Icons.star_border_outlined,
                             color: Colors.grey.shade400,
+                            size: 0.07 * size.width,
                           ),
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -254,6 +288,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                           icon: Icon(
                             Icons.home_outlined,
                             color: Colors.grey.shade400,
+                            size: 0.07 * size.width,
                           ),
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -271,17 +306,34 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                             icon: Icon(
                               Icons.add,
                               color: Colors.grey.shade400,
+                              size: 0.07 * size.width,
                             ),
                             onPressed: () async {
+                              //check if any of the stickers are locked, if so don't add to WhatsApp
+                              if (qStatusList != null) {
+                                int i = 0;
+                                for (i = 0; i < qStatusList.length; i++) {
+                                  //if at least one of the entries is 'y', that means all stickers aren't unlocked
+                                  if (qStatusList[i] == 'y') {
+                                    return AlertDialog(
+                                      content: Text(
+                                          'Unlock All stickers by answering all quiz questions !'),
+                                    );
+                                  }
+                                }
+                              }
                               _waStickers.addStickerPack(
                                 packageName: WhatsAppPackage.Consumer,
-                                stickerPackIdentifier: response["sticker_packs"][0]["identifier"],
-                                stickerPackName: response["sticker_packs"][0]["name"],
-                                listener: (action, result, {error}) => processResponse(
+                                stickerPackIdentifier: response["sticker_packs"]
+                                    [0]["identifier"],
+                                stickerPackName: response["sticker_packs"][0]
+                                    ["name"],
+                                listener: (action, result, {error}) =>
+                                    processResponse(
                                   action: action,
                                   result: result,
                                   error: error,
-                                  successCallback: _checkInstallationStatuses , 
+                                  successCallback: _checkInstallationStatuses,
                                   //  () async {
                                   //   _checkInstallationStatuses();
                                   // },
@@ -293,6 +345,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                             icon: Icon(
                               Icons.emoji_events_outlined,
                               color: Colors.grey.shade400,
+                              size: 0.07 * size.width,
                             ),
                             onPressed: () {
                               Navigator.pushReplacement(

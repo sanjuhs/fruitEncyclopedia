@@ -71,7 +71,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     }
   }
 
-  void storeData(String id) {
+  void storeData(String id, Size size) {
     //flag to check if fruit exists
     bool flag = true;
     //if fruit exists then remove from favourites and return
@@ -92,10 +92,10 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
         builder: (BuildContext context) {
           return flag
               ? AlertDialog(
-                  content: Text('Added to Favourites !'),
+                  content: Text('Added to Favourites !',style: TextStyle(fontSize: 0.05*size.width),),
                 )
               : AlertDialog(
-                  content: Text('Deleted from Favourites !'),
+                  content: Text('Deleted from Favourites !',style: TextStyle(fontSize: 0.05*size.width)),
                 );
         });
     loadData();
@@ -244,7 +244,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                         size: 0.07 * size.width,
                                       ),
                                       onPressed: () {
-                                        storeData(fruitTobeDisplayed['id']);
+                                        storeData(fruitTobeDisplayed['id'],size);
                                       },
                                       splashColor: Colors.white,
                                     )
@@ -255,7 +255,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                         size: 0.07 * size.width,
                                       ),
                                       onPressed: () {
-                                        storeData(fruitTobeDisplayed['id']);
+                                        storeData(fruitTobeDisplayed['id'],size);
                                       },
                                       splashColor: Colors.white,
                                     ),

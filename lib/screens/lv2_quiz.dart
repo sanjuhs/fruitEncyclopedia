@@ -46,7 +46,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
       }
 
       //if all ys are replaced with n's then we run the following to reset quiz questions
-      if(!flag){
+      if (!flag) {
         List<String> qlist = [];
         var i = 0;
         for (i = 0; i <= 20; i++) {
@@ -68,19 +68,24 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
     final quizQuestions = Provider.of<Quiz>(context);
     final quizQuestionsList = quizQuestions.quizQuestionsList;
 
+    final size = MediaQuery.of(context).size;
+
     var questionToLoad = quizQuestionsList[index];
 
     return Scaffold(
       body: ListView(
         shrinkWrap: false,
         children: [
-           Container(
+          Container(
             width: double.infinity,
-            height: 200,
-            margin: EdgeInsets.all(10),
+            height: 0.5 * size.height,
+            margin: EdgeInsets.only(
+                top: 0.01 * size.width,
+                left: 0.01 * size.width,
+                right: 0.01 * size.width),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/'+questionToLoad['imgURL']),
+                image: AssetImage('assets/images/' + questionToLoad['imgURL']),
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -90,13 +95,15 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             margin: EdgeInsets.only(left: 10, right: 10, top: 35),
             child: Text(
               questionToLoad['questionText'],
-              style: TextStyle(fontSize: 28),
+              style: TextStyle(fontSize: 0.05 * size.width),
               textAlign: TextAlign.center,
             ),
           ),
-         
           Padding(
-            padding: const EdgeInsets.only(left: 9.0, right: 9.0, top: 5.0),
+            padding: EdgeInsets.only(
+                left: 0.07 * size.width,
+                right: 0.07 * size.width,
+                top: 0.02 * size.width),
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.blue[400]),
@@ -105,7 +112,10 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                 ),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
               ),
-              child: Text(questionToLoad['option1']),
+              child: Text(
+                questionToLoad['option1'],
+                style: TextStyle(fontSize: 0.04 * size.width),
+              ),
               onPressed: () {
                 print("benn presss");
                 if (questionToLoad['option1'].toLowerCase() ==
@@ -118,7 +128,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   sharedPreferences.setStringList('quiz', yList);
 
                   //only if all quiz questions are answered once then don't update stickers
-                  if(sharedPreferences.getBool('quizDone') == false){
+                  if (sharedPreferences.getBool('quizDone') == false) {
                     sharedPreferences.setStringList('stickers', yList);
                   }
 
@@ -145,7 +155,10 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 9.0, right: 9.0, top: 5.0),
+            padding: EdgeInsets.only(
+                left: 0.07 * size.width,
+                right: 0.07 * size.width,
+                top: 0.02 * size.width),
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.blue[400]),
@@ -154,7 +167,10 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                 ),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
               ),
-              child: Text(questionToLoad['option2']),
+              child: Text(
+                questionToLoad['option2'],
+                style: TextStyle(fontSize: 0.04 * size.width),
+              ),
               onPressed: () {
                 if (questionToLoad['option2'].toLowerCase() ==
                     questionToLoad['answerText'].toLowerCase()) {
@@ -163,7 +179,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   yList[index] = 'n';
 
                   sharedPreferences.setStringList('quiz', yList);
-                  if(sharedPreferences.getBool('quizDone') == false){
+                  if (sharedPreferences.getBool('quizDone') == false) {
                     sharedPreferences.setStringList('stickers', yList);
                   }
                   //route to next screen
@@ -188,7 +204,10 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 9.0, right: 9.0, top: 5.0),
+            padding: EdgeInsets.only(
+                left: 0.07 * size.width,
+                right: 0.07 * size.width,
+                top: 0.02 * size.width),
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.blue[400]),
@@ -197,7 +216,10 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                 ),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
               ),
-              child: Text(questionToLoad['option3']),
+              child: Text(
+                questionToLoad['option3'],
+                style: TextStyle(fontSize: 0.04 * size.width),
+              ),
               onPressed: () {
                 if (questionToLoad['option3'].toLowerCase() ==
                     questionToLoad['answerText'].toLowerCase()) {
@@ -207,7 +229,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   print(yList);
                   sharedPreferences.setStringList('quiz', yList);
                   //print(sharedPreferences.getStringList('favourites'));
-                  if(sharedPreferences.getBool('quizDone') == false){
+                  if (sharedPreferences.getBool('quizDone') == false) {
                     sharedPreferences.setStringList('stickers', yList);
                   }
                   //route to next screen
@@ -232,16 +254,22 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 9.0, right: 9.0, top: 5.0),
+            padding: EdgeInsets.only(
+                left: 0.07 * size.width,
+                right: 0.07 * size.width,
+                top: 0.02 * size.width),
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.blue[400]),
                 padding: MaterialStateProperty.all(
-                  EdgeInsets.all(10),
+                  EdgeInsets.all(0.01 * size.width),
                 ),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
               ),
-              child: Text(questionToLoad['option4']),
+              child: Text(
+                questionToLoad['option4'],
+                style: TextStyle(fontSize: 0.04 * size.width),
+              ),
               onPressed: () {
                 if (questionToLoad['option4'].toLowerCase() ==
                     questionToLoad['answerText'].toLowerCase()) {
@@ -249,7 +277,7 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
                   var yList = sharedPreferences.getStringList('quiz');
                   yList[index] = 'n';
                   sharedPreferences.setStringList('quiz', yList);
-                  if(sharedPreferences.getBool('quizDone') == false){
+                  if (sharedPreferences.getBool('quizDone') == false) {
                     sharedPreferences.setStringList('stickers', yList);
                   }
                   //route to next screen
@@ -274,19 +302,32 @@ class _Lv2_QuizState extends State<Lv2_Quiz> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 50),
+            padding: EdgeInsets.only(
+                top: 0.04 * size.width,
+                left: 0.02 * size.width,
+                right: 0.02 * size.width,
+                bottom: 0.02 * size.width),
             child: ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Hint'),
-                          content: Text(questionToLoad['hintText']),
-                        );
-                      });
-                },
-                child: Text('Show Hint')),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Hint', style: TextStyle(fontSize: 0.06*size.width),),
+                        content: Text(questionToLoad['hintText'],style: TextStyle(fontSize: 0.04*size.width),),
+                      );
+                    });
+              },
+              child: Text(
+                'Show Hint',
+                style: TextStyle(fontSize: 0.04 * size.width),
+              ),
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                          EdgeInsets.all(0.01 * size.width),
+                        ),
+              ),
+            ),
           ),
         ],
       ),

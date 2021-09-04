@@ -47,7 +47,7 @@ class _FilterDialogState extends State<FilterDialog> {
                     alignment: Alignment.topRight,
                     icon: Icon(
                       Icons.cancel_rounded,
-                      size: 0.02 * size.width,
+                      size: 0.07 * size.width,
                     ),
                     onPressed: () {
                       Navigator.pop(context, _controller1.text);

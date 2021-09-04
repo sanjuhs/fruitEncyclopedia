@@ -34,24 +34,44 @@ class _TreeDialogState extends State<TreeDialog> {
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.only(top: 30, left: 30, right: 30 , bottom: 0),
+                    padding: EdgeInsets.only(top: 0.06*size.width, left: 0.06*size.width, right: 0),
                     child: IconButton(
                       alignment: Alignment.topLeft,
                       icon: Icon(
                         Icons.cancel_rounded,
+                        size: 0.05*size.width,
                       ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
                   ),
-                  Text(" ${widget.fruit['cmnName']}  Plant/Tree " , style: TextStyle(fontSize: 21 , fontWeight: FontWeight.bold),),
-                  SizedBox(height: 10,),
-                  Divider(height: 1, thickness: 3, indent: 70, endIndent: 70, color:  widget.fruit['color1'] ,
-                              ),SizedBox(height: 10,),
-                  Container( child: Image.asset( 'assets/images/'+widget.fruit['treeURL'], fit: BoxFit.cover, ) ,
-                    padding: EdgeInsets.all(45),
+                  Text(
+                    " ${widget.fruit['cmnName']}  Plant/Tree ",
+                    style: TextStyle(
+                        fontSize: 0.07 * size.width,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 3,
+                    indent: 70,
+                    endIndent: 70,
+                    color: widget.fruit['color1'],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    child: Image.asset(
+                      'assets/images/' + widget.fruit['treeURL'],
+                      fit: BoxFit.cover,
                     ),
+                    padding: EdgeInsets.all(0.03*size.width),
+                  ),
                   // Container(
                   //   transform: Matrix4.translationValues(0.0, -70.0, 0.0),
                   //   width: double.infinity,
