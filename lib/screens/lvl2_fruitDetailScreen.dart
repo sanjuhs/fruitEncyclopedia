@@ -71,7 +71,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
     }
   }
 
-  void storeData(String id) {
+  void storeData(String id, Size size) {
     //flag to check if fruit exists
     bool flag = true;
     //if fruit exists then remove from favourites and return
@@ -85,7 +85,6 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
       }
     });
 
-   
     // print(idsList);
     sharedPreferences.setStringList('favourites', idsList);
     showDialog(
@@ -93,10 +92,10 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
         builder: (BuildContext context) {
           return flag
               ? AlertDialog(
-                  content: Text('Added to Favourites !'),
+                  content: Text('Added to Favourites !',style: TextStyle(fontSize: 0.05*size.width),),
                 )
               : AlertDialog(
-                  content: Text('Deleted from Favourites !'),
+                  content: Text('Deleted from Favourites !',style: TextStyle(fontSize: 0.05*size.width)),
                 );
         });
     loadData();
@@ -169,7 +168,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                         textDirection: TextDirection.ltr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 0.07 * size.width,
                         ),
                       ),
                     ),
@@ -181,7 +180,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                           text: TextSpan(
                             text: fruitTobeDisplayed['slDescription'],
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 0.04 * size.width,
                               color: Colors.black,
                             ),
                           ),
@@ -199,30 +198,36 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                   left: 0,
                   child: Container(
                     width: size.width,
-                    height: 80,
+                    height: 0.15 * size.width,
                     child: Stack(
                       children: [
                         CustomPaint(
-                          size: Size(size.width, 12.5 * size.height),
+                          size: Size(size.width, 0.15 * size.width),
                           painter: BNBCustomPainter(
                             // color: fruitTobeDisplayed['color1']
                             color: Colors.white,
                           ),
                         ),
                         Center(
-                          heightFactor: 0.6,
-                          child: FloatingActionButton(
-                              backgroundColor: Colors.orange,
-                              child: Icon(Icons.quiz_sharp),
-                              elevation: 0.1,
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Lv2_Quiz(),
-                                  ),
-                                );
-                              }),
+                          heightFactor: 0.4,
+                          child: Container(
+                            width: 0.3 * size.width,
+                            height: 0.3 * size.height,
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.orange,
+                                child: Icon(Icons.quiz_sharp,
+                                size: 0.07 * size.width,
+                                ),
+                                elevation: 0.1,
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Lv2_Quiz(),
+                                    ),
+                                  );
+                                }),
+                          ),
                         ),
                         Container(
                           width: size.width,
@@ -236,9 +241,10 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                       icon: Icon(
                                         Icons.star_border_outlined,
                                         color: Colors.grey.shade400,
+                                        size: 0.07 * size.width,
                                       ),
                                       onPressed: () {
-                                        storeData(fruitTobeDisplayed['id']);
+                                        storeData(fruitTobeDisplayed['id'],size);
                                       },
                                       splashColor: Colors.white,
                                     )
@@ -246,9 +252,10 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                       icon: Icon(
                                         Icons.star,
                                         color: Colors.red,
+                                        size: 0.07 * size.width,
                                       ),
                                       onPressed: () {
-                                        storeData(fruitTobeDisplayed['id']);
+                                        storeData(fruitTobeDisplayed['id'],size);
                                       },
                                       splashColor: Colors.white,
                                     ),
@@ -256,6 +263,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 icon: Icon(
                                   Icons.health_and_safety_outlined,
                                   color: Colors.grey.shade400,
+                                  size: 0.07 * size.width,
                                 ),
                                 onPressed: () {
                                   showGeneralDialog(
@@ -282,6 +290,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 icon: Icon(
                                   Icons.description_outlined,
                                   color: Colors.grey.shade400,
+                                  size: 0.07 * size.width,
                                 ),
                                 onPressed: () {
                                   showGeneralDialog(
@@ -305,6 +314,7 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 icon: Icon(
                                   Icons.photo_camera_back_outlined,
                                   color: Colors.grey.shade400,
+                                  size: 0.07 * size.width,
                                 ),
                                 onPressed: () {
                                   showGeneralDialog(
@@ -375,6 +385,7 @@ class CurvedShape extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
+                padding: EdgeInsets.only(top: 0.02*MediaQuery.of(context).size.width, left: 0.02*MediaQuery.of(context).size.width),
                 splashColor: Colors.grey,
                 onPressed: () {
                   // Navigator.pop(context);
@@ -383,7 +394,7 @@ class CurvedShape extends StatelessWidget {
                   Navigator.of(context).popUntil((route) => route.isFirst);
                 },
                 icon: Icon(Icons.arrow_back_ios),
-                iconSize: 28,
+                iconSize: 0.05*MediaQuery.of(context).size.width,
               ),
             ],
           ),

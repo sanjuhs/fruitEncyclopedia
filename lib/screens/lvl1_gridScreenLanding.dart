@@ -80,7 +80,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
             "Fruit-pedia",
             textAlign: TextAlign.start,
             style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                fontSize: 0.06*size.width, color: Colors.white, fontWeight: FontWeight.bold),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -88,7 +88,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
               "Learn More ",
               textAlign: TextAlign.start,
               style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 0.04*size.width,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),
