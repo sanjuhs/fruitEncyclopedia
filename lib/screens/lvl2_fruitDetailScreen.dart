@@ -204,8 +204,8 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                         CustomPaint(
                           size: Size(size.width, 0.15 * size.width),
                           painter: BNBCustomPainter(
-                            // color: fruitTobeDisplayed['color1']
-                            color: Colors.white,
+                            color: fruitTobeDisplayed['color1']
+                            //color: Colors.white,
                           ),
                         ),
                         Center(
@@ -238,10 +238,13 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                               //if fruit not there in the list then show outlined star
                               !idsList.contains(fruitTobeDisplayed['id'])
                                   ? IconButton(
+                                    padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                                    iconSize: 0.07 * size.width,
                                       icon: Icon(
                                         Icons.star_border_outlined,
-                                        color: Colors.grey.shade400,
-                                        size: 0.07 * size.width,
+                                        //color: Colors.grey.shade400,
+                                        color:Colors.black87,
+                                        //size: 0.07 * size.width,
                                       ),
                                       onPressed: () {
                                         storeData(fruitTobeDisplayed['id'],size);
@@ -249,10 +252,12 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                       splashColor: Colors.white,
                                     )
                                   : IconButton(
+                                    padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                                    iconSize: 0.07 * size.width,
                                       icon: Icon(
                                         Icons.star,
                                         color: Colors.red,
-                                        size: 0.07 * size.width,
+                                        //size: 0.07 * size.width,
                                       ),
                                       onPressed: () {
                                         storeData(fruitTobeDisplayed['id'],size);
@@ -260,10 +265,13 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                       splashColor: Colors.white,
                                     ),
                               IconButton(
+                                padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                                iconSize: 0.07 * size.width,
                                 icon: Icon(
                                   Icons.health_and_safety_outlined,
-                                  color: Colors.grey.shade400,
-                                  size: 0.07 * size.width,
+                                  color:Colors.black87,
+                                  //color: Colors.grey.shade400,
+                                  //size: 0.07 * size.width,
                                 ),
                                 onPressed: () {
                                   showGeneralDialog(
@@ -287,10 +295,13 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 width: size.width * 0.20,
                               ),
                               IconButton(
+                                padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                                iconSize: 0.07 * size.width,
                                 icon: Icon(
                                   Icons.description_outlined,
-                                  color: Colors.grey.shade400,
-                                  size: 0.07 * size.width,
+                                  //color: Colors.grey.shade400,
+                                  color:Colors.black87,
+                                  //size: 0.07 * size.width,
                                 ),
                                 onPressed: () {
                                   showGeneralDialog(
@@ -311,9 +322,13 @@ class _Lv2FruitDetails extends State<Lv2FruitDetails> {
                                 },
                               ),
                               IconButton(
+                                //alignment: Alignment.bottomCenter ,
+                                padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                                iconSize: 0.07 * size.width,
                                 icon: Icon(
                                   Icons.photo_camera_back_outlined,
-                                  color: Colors.grey.shade400,
+                                  //color: Colors.grey.shade400,
+                                  color:Colors.black87,
                                   size: 0.07 * size.width,
                                 ),
                                 onPressed: () {
@@ -372,7 +387,7 @@ class CurvedShape extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/' + imgUrl),
-                  fit: BoxFit.scaleDown,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -385,6 +400,7 @@ class CurvedShape extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
+                
                 padding: EdgeInsets.only(top: 0.02*MediaQuery.of(context).size.width, left: 0.02*MediaQuery.of(context).size.width),
                 splashColor: Colors.grey,
                 onPressed: () {

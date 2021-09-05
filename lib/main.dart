@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Fruit Prdia : A Comprehensive Fruit Guide',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
