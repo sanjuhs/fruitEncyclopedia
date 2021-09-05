@@ -52,10 +52,12 @@ class BottomNavbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
+                  padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                  iconSize: 0.07 * size.width,
                   icon: Icon(
                     Icons.star_border_outlined,
-                    color: Colors.grey.shade400,
-                    size: 0.07 * size.width,
+                    //color: Colors.grey.shade400,
+                    color:Colors.black,
                   ),
                   onPressed: () {
                     Navigator.pushReplacement(
@@ -68,10 +70,12 @@ class BottomNavbar extends StatelessWidget {
                   splashColor: Colors.white,
                 ),
                 IconButton(
+                  padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                  iconSize: 0.07 * size.width,
                   icon: Icon(
                     Icons.home_outlined,
-                    color: Colors.grey.shade400,
-                    size: 0.07 * size.width,
+                    //color: Colors.grey.shade400,
+                    color:Colors.black,
                   ),
                   onPressed: () {
                     Navigator.pushReplacement(
@@ -85,20 +89,25 @@ class BottomNavbar extends StatelessWidget {
                 Container(
                   width: size.width * 0.20,
                 ),
-                IconButton(
+                IconButton(               
+                  padding: EdgeInsets.only(top: 0.02 * size.width , ),   
+                  iconSize: 0.07 * size.width,
                     icon: Icon(
                       Icons.filter_list_outlined,
-                      color: Colors.grey.shade400,
-                      size: 0.07 * size.width,
+                      //color: Colors.grey.shade400,
+                      color:Colors.black,
                     ),
                     onPressed: () {
                       this.showDialogBox();
                     }),
                 IconButton(
+                  padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                    iconSize: 0.07 * size.width,
                     icon: Icon(
                       Icons.emoji_events_outlined,
-                      color: Colors.grey.shade400,
-                      size: 0.07 * size.width,
+                      //color: Colors.grey.shade400,
+                      color:Colors.black,
+                      
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -121,7 +130,7 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = Colors.white
+      ..color = Colors.redAccent.shade100
       ..style = PaintingStyle.fill;
 
     Path path = Path();

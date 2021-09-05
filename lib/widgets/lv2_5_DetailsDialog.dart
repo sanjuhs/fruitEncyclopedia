@@ -58,7 +58,7 @@ class _DetailsDialogState extends State<DetailsDialog> {
                           // color: Colors.yellow,
                           ),
                       padding: EdgeInsets.only(top: 0.1*size.width, left:  0.1*size.width, right:  0.1*size.width ,bottom:  0.3*size.width),
-                      child: Text(widget.fruit['description'] , style: TextStyle(fontSize: 0.03*size.width),),
+                      child: Text(widget.fruit['description'] , style: TextStyle(fontSize: 0.04*size.width),),
                           ),
                     SizedBox(height: 135,),
                     //Text("data")

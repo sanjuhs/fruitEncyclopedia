@@ -77,7 +77,7 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
       child: Column(
         children: [
           Text(
-            "Fruit-pedia",
+            "Fruit pedia",
             textAlign: TextAlign.start,
             style: TextStyle(
                 fontSize: 0.06*size.width, color: Colors.white, fontWeight: FontWeight.bold),
@@ -85,10 +85,10 @@ class _lvl1GridScreenLandingState extends State<lvl1GridScreenLanding>
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              "Learn More ",
+              "A Comprehensive Fruit Guide ",
               textAlign: TextAlign.start,
               style: TextStyle(
-                  fontSize: 0.04*size.width,
+                  fontSize: 0.03*size.width,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),

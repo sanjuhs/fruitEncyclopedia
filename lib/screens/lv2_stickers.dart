@@ -174,6 +174,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
               ),
               Center(
                   child: ElevatedButton(
+                
                 child: Text(
                   "Add to WhatsApp",
                   style: TextStyle(fontSize: 0.05 * size.width),
@@ -190,7 +191,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 content: Text(
-                                  'Unlock all stickers by answering all quiz questions !',
+                                  'Unlock all stickers by answering more quiz questions !',
                                   style: TextStyle(fontSize: 0.04 * size.width),
                                 ),
                               );
@@ -217,7 +218,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                 },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
-                      EdgeInsets.all(0.01 * size.width),
+                      EdgeInsets.all(0.06 * size.width),
                     ),
                     backgroundColor:
                         MaterialStateProperty.all(Colors.lightBlue)),
@@ -269,10 +270,13 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
+                          padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                          iconSize: 0.07 * size.width,
                           icon: Icon(
                             Icons.star_border_outlined,
-                            color: Colors.grey.shade400,
-                            size: 0.07 * size.width,
+                            //color: Colors.grey.shade400,
+                            color:Colors.black87,
+                            //size: 0.07 * size.width,
                           ),
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -285,10 +289,13 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                           splashColor: Colors.white,
                         ),
                         IconButton(
+                          padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                          iconSize: 0.07 * size.width,
                           icon: Icon(
                             Icons.home_outlined,
-                            color: Colors.grey.shade400,
-                            size: 0.07 * size.width,
+                            //color: Colors.grey.shade400,
+                            color:Colors.black87,
+                            //size: 0.07 * size.width,
                           ),
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -303,10 +310,13 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                           width: size.width * 0.20,
                         ),
                         IconButton(
+                          padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                          iconSize: 0.07 * size.width,
                             icon: Icon(
                               Icons.add,
-                              color: Colors.grey.shade400,
-                              size: 0.07 * size.width,
+                              //color: Colors.grey.shade400,
+                              color:Colors.black87,
+                              //size: 0.07 * size.width,
                             ),
                             onPressed: () async {
                               //check if any of the stickers are locked, if so don't add to WhatsApp
@@ -320,7 +330,7 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                                         builder: (BuildContext context) {
                                           return AlertDialog(
                                             content: Text(
-                                              'Unlock all stickers by answering all quiz questions !',
+                                              'Unlock all stickers by answering more quiz questions !',
                                               style: TextStyle(
                                                   fontSize: 0.04 * size.width),
                                             ),
@@ -349,10 +359,13 @@ class _Lv2StickersScreenState extends State<Lv2StickersScreen> {
                               );
                             }),
                         IconButton(
+                          padding: EdgeInsets.only(top: 0.02 * size.width , ),
+                          iconSize: 0.07 * size.width,
                             icon: Icon(
                               Icons.emoji_events_outlined,
-                              color: Colors.grey.shade400,
-                              size: 0.07 * size.width,
+                              //color: Colors.grey.shade400,
+                              color:Colors.black87,
+                              //size: 0.07 * size.width,
                             ),
                             onPressed: () {
                               Navigator.pushReplacement(
