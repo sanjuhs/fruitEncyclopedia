@@ -1,20 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:myapp8_fruit_encyclopedia/providers/quiz.dart';
+import 'package:provider/provider.dart';
+
 import 'package:myapp8_fruit_encyclopedia/providers/fruit_info.dart';
 import 'package:myapp8_fruit_encyclopedia/screens/lvl1_gridScreenLanding.dart';
-import 'package:provider/provider.dart';
-import 'package:myapp8_fruit_encyclopedia/screens/lvl2_fruitDetailScreen.dart';
+import 'package:myapp8_fruit_encyclopedia/providers/favourites.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 void main() {
+  // print("GOLOOO");
+  // SharedPreferences sharedPreferences;
+
+  // SharedPreferences.getInstance().then((SharedPreferences sp) {
+  //   print("soloo");
+  //   sharedPreferences = sp;
+  //   List<String> qlist = [];
+  //   var i = 0;
+  //   for (i = 0; i <= 20; i++) {
+  //     qlist.add('y');
+  //   }
+  //   print(qlist);
+  //   print("XXXXXX");
+  //   sharedPreferences.setStringList('quiz', qlist);
+  //   print(sharedPreferences.getStringList('quiz'));
+  //   print("quiz is set");
+  // });
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    print("GOLOOO");
+    SharedPreferences sharedPreferences;
+
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      print("soloo");
+      sharedPreferences = sp;
+      if (sharedPreferences.getStringList('quiz') == null) {
+        List<String> qlist = [];
+        var i = 0;
+        for (i = 0; i < 15; i++) {
+          qlist.add('y');
+        }
+        print(qlist);
+        print("XXXXXX");
+        sharedPreferences.setStringList('quiz', qlist);
+        print(sharedPreferences.getStringList('quiz'));
+        print("quiz is set");
+        sharedPreferences.setStringList('stickers', qlist);
+        sharedPreferences.setBool('quizDone', false);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx)=> FruitsInfo(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => FruitsInfo(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => Favourites(),
+        ),
+        ChangeNotifierProvider(create: (ctx) => Quiz()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Fruit Prdia : A Comprehensive Fruit Guide',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -23,8 +83,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 
 // class MyHomePage extends StatefulWidget {
 //   MyHomePage({Key key, this.title}) : super(key: key);

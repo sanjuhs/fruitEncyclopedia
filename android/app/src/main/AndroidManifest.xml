@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.edxperimental.Fruitsopedia">
    <application
-        android:label="Fruitsopedia"
+        android:label="Fruit Pedia"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
